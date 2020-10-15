@@ -1,0 +1,4 @@
+-As a music lover, I want to create a group of people to attend a concert with, so that we can share the price for gas and have more fun.
+
+-As an event organizer, I want to recommend my event, so that I reach more people 	
+-As a new user, I want to insert what I like to do, so that the system can find a similar activity.
