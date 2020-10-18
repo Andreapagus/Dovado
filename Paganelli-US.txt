@@ -1,0 +1,4 @@
+-As a new user, I want to insert what I like to do, so that the system can find and show activities based on what I like.
+-As a partner, I want to be able to claim my place on the app, so that I gain exposure to all the explorers on the app.
+-As an explorer, I want to be able to join a public chat for an event, so that I can find like-minded people to enjoy the event with. 
+ 

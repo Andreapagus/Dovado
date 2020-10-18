@@ -1,0 +1,3 @@
+-The system shall provide partners the ability to register or reclaim their business on the system.
+-The system shall provide a public chat for each activity registered in the app.
+-The system shall show the user the activities filtered according to his preferences.
