@@ -37,11 +37,11 @@ import logic.model.User;
  * 
  * */
 
-public class ControllerAddActivityToSchedule {
+public class AddActivityToScheduleController {
 	private User session;
 	private DateBean timestamp;
 	
-	public ControllerAddActivityToSchedule(User usr, DateBean timestamp) {
+	public AddActivityToScheduleController(User usr, DateBean timestamp) {
 		session = usr;
 		this.timestamp= timestamp;
 	}
