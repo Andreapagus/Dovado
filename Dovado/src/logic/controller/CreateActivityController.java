@@ -2,6 +2,7 @@ package logic.controller;
 import java.util.ArrayList;
 
 import logic.model.ActivityVector;
+import logic.model.DateBean;
 import logic.model.Factory;
 import logic.model.Partner;
 import logic.model.Place;
@@ -12,62 +13,43 @@ import logic.model.User;
 public class CreateActivityController {
 	private SuperUser u;
 	PlaceVector placeVector = PlaceVector.getPlaceVector();
+	CreateActivityBean bean;
 	
-	CreateActivityController(SuperUser u){
+	
+	
+	CreateActivityController(SuperUser u, CreateActivityBean bean){
 		this.u= u;
+		this.bean = bean;
 	}
 	
-	public void createActivity(String n, int type, Place p) {
-		if(u instanceof User) Factory.createNormalActivity(n, u, type, p);
-		else Factory.createCertifiedActivity(n, u, type, p);
-	}
-	
-	public void createActivity(String n, int type) {
-		/*caso in cui il place non esiste va creato!
-		*
-		*quindi invoco il controller dell'uc Create place
-		*
-		*aggiungo il place dentro il singleton di places
-		*
-		*e uso il place per mettercelo nell'activity!
-		*
-		*
-		*/
+	public void createActivity(String n, Place p) {
+		//spaghetti code here!!!
+		switch(bean.getType()) {
+		case continua:
+			{	
+				if(u instanceof User) Factory.createNormalActivity(n, u, p, bean.getOpeningTime(), bean.getClosingTime());
+				else Factory.createCertifiedActivity(n, u, p, bean.getOpeningTime(), bean.getClosingTime() );
+			}
+		break;
+		case periodica:
+			{
+				if(u instanceof User) Factory.createNormalActivity(n, u, p, bean.getOpeningTime(), bean.getClosingTime(), bean.getStartDate(), bean.getEndDate(), bean.getCadence());
+				else Factory.createCertifiedActivity(n, u, p, bean.getOpeningTime(), bean.getClosingTime(), bean.getStartDate(), bean.getEndDate(), bean.getCadence());
+			}
+		break;
+		case scadenza:
+			{
+				if(u instanceof User) Factory.createNormalActivity(n, u, p, bean.getOpeningTime(), bean.getClosingTime(), bean.getStartDate(), bean.getEndDate());
+				else Factory.createCertifiedActivity(n, u, p, bean.getOpeningTime(), bean.getClosingTime(), bean.getStartDate(), bean.getEndDate());
+			}
+		break;
+		}
 		
-		CreatePlaceController c = new CreatePlaceController(u);
-		
-		Place p = c.CreatePlace("ciao", null); //<---- va rivisto
-		
-		
-		if(u instanceof User) Factory.createNormalActivity(n, u, type, p);
-		else Factory.createCertifiedActivity(n, u, type, p);
 	}
 	
 	public ArrayList<Place> getPlaces(){
 		return placeVector.getPlaces();
 	}
 	
-	
-	
-	
-	public static void main(String args[]) {
-		User u = new User("sessione1"); //<---- sessione 1
-		Partner p = new Partner("Sessione2"); //<---- sessione 2
-		
-		CreateActivityController c1 = new CreateActivityController(u); //<---- sessione 1
-		CreateActivityController c2 = new CreateActivityController(p); //<---- sessione 2
-		
-		c1.createActivity("ciao", 1); //<---- sessione 1
-		c2.createActivity("ciao2", 1); //<---- sessione 2
-		
-		//------ roba che si vedrà il controller di playactivity -----
-		ActivityVector.getActivityVector().getActivity().get(0).PlayActivity(u); //<---- sessione 1
-		ActivityVector.getActivityVector().getActivity().get(1).PlayActivity(u); //<---- sessione 1
-		ActivityVector.getActivityVector().getActivity().get(1).PlayActivity(u); //<---- sessione 1
-		
-		System.out.println(u.getBalance());
-		
-		System.out.println(PlaceVector.getPlaces());
-		
-	}
+
 }
