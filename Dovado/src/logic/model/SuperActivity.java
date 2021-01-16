@@ -9,6 +9,7 @@ public abstract class SuperActivity {
 	private SuperUser creator;
 	private Place place;
 	private FrequencyOfRepeat frequencyOfRepeat;
+	private Channell channell;
 	
 	public SuperActivity(String nome, SuperUser c, Place p) {
 		//chiamare questo metodo quando si vuole creare una attività continua!
@@ -16,6 +17,7 @@ public abstract class SuperActivity {
 		creator = c;
 		place = p;
 		frequencyOfRepeat = new ContinuosActivity(null,null);
+		channell = new Channell();
 	}
 	
 	public SuperActivity(String nome, SuperUser c, Place p, LocalTime openingTime, LocalTime closingTime) {
@@ -49,6 +51,10 @@ public abstract class SuperActivity {
 	}
 	public void setCreator(User creator) {
 		this.creator = creator;
+	}
+	
+	public Channell getChannell() {
+		return this.channell;
 	}
 	
 	public boolean playableOnThisDate(LocalDateTime timestamp) {

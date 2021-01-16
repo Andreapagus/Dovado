@@ -264,6 +264,28 @@ public class Main {
 		else System.out.println("non Ã¨ fattibile :(");
 		//--------------------------------------------------------------
 	
+		
+		//----------------TEST CHANNELL----------------------
+		System.out.println("\n"+ "------------------------------TEST CHANNELL-------------------------------------------"+"\n");
+		
+		PlayActivityController cpa = new PlayActivityController(cf.findActivity(3));
+		
+		cpa.readOnChannell(0);
+		
+		cpa.writeOnChannell(1, "Io sono pane");
+		cpa.writeOnChannell(2, "Tu sei pane");
+		cpa.writeOnChannell(0, "Tupac è pane");
+		
+		cpa.writeOnChannell(1, "Noi siamo pane");
+		cpa.writeOnChannell(2, "Voi siete pane");
+		cpa.writeOnChannell(0, "I chad sono chad");
+		
+		cpa.readOnChannell(1);
+		
+		
+		
+		
+		
 	}
 
 }
