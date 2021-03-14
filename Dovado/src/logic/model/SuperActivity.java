@@ -4,12 +4,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public abstract class SuperActivity {
+public class SuperActivity implements Activity {
 	private String name;
 	private SuperUser creator;
 	private Place place;
 	private FrequencyOfRepeat frequencyOfRepeat;
 	private Channell channell;
+	private KindOfActivity kind;
 	
 	public SuperActivity(String nome, SuperUser c, Place p) {
 		//chiamare questo metodo quando si vuole creare una attività continua!
@@ -18,6 +19,7 @@ public abstract class SuperActivity {
 		place = p;
 		frequencyOfRepeat = new ContinuosActivity(null,null);
 		channell = new Channell();
+		kind = new NormalActivity();
 	}
 	
 	public SuperActivity(String nome, SuperUser c, Place p, LocalTime openingTime, LocalTime closingTime) {
@@ -37,8 +39,6 @@ public abstract class SuperActivity {
 		this(nome,c,p);
 		frequencyOfRepeat = new PeriodicActivity(openingTime,closingTime,startDate,endDate,cadence);
 	}
-	
-	
 	
 	public String getName() {
 		return name;
@@ -66,4 +66,14 @@ public abstract class SuperActivity {
 		if (frequencyOfRepeat.checkPlayability(timestamp)) return true;
 		else return false;
 	}
+	
+	@Override
+	public void playActivity(User u) {
+		this.kind.playActivity(u);
+	}
+	
+	public void reclaimActivity(Partner p) {
+		this.kind = new CertifiedActivity(p);
+	}
+
 }

@@ -171,12 +171,12 @@ public class Main {
 		
 		FindActivityController cf = new FindActivityController();
 		System.out.println("L'utente farà un'attività NON certificata:");
-		cf.findActivity(0).PlayActivity(u);
+		cf.findActivity(0).playActivity(u);
 		
 		System.out.println("saldo dell'utente dopo attività: "+u.getBalance());
 		
 		System.out.println("L'utente farà un'attività Certificata:");
-		cf.findActivity(1).PlayActivity(u);
+		cf.findActivity(1).playActivity(u);
 		System.out.println("saldo dell'utente dopo attività: "+u.getBalance());
 		
 		//------------------------------------------------------------
@@ -274,7 +274,7 @@ public class Main {
 		
 		cpa.writeOnChannell(1, "Io sono pane");
 		cpa.writeOnChannell(2, "Tu sei pane");
-		cpa.writeOnChannell(0, "Tupac � pane");
+		cpa.writeOnChannell(0, "Tupac � pane");
 		
 		cpa.writeOnChannell(1, "Noi siamo pane");
 		cpa.writeOnChannell(2, "Voi siete pane");

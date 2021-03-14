@@ -7,27 +7,44 @@ public class Factory {
 	private static ActivityVector a = ActivityVector.getActivityVector();
 	
 	public static void createNormalActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime) {
-		a.addActivity( new NormalActivity(nome,u, p,openingTime,closingTime));
+		SuperActivity activity = new SuperActivity(nome,u, p,openingTime,closingTime);
+		
+		a.addActivity(activity);
 	}
 	
 	public static void createNormalActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime, LocalDate startDate, LocalDate endDate) {
-		a.addActivity( new NormalActivity(nome,u, p,openingTime,closingTime,startDate,endDate));
+		SuperActivity activity = new SuperActivity(nome,u, p,openingTime,closingTime,startDate,endDate);
+		
+		a.addActivity( activity);
 	}
 	
 	public static void createNormalActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime, LocalDate startDate, LocalDate endDate, Cadence cadence ) {
-		a.addActivity( new NormalActivity(nome,u, p,openingTime,closingTime,startDate,endDate,cadence));
+		SuperActivity activity = new SuperActivity(nome,u, p,openingTime,closingTime,startDate,endDate,cadence);
+		
+		a.addActivity( activity);
 	}
 	
 	public static void createCertifiedActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime) {
-		a.addActivity( new CertifiedActivity(nome,u, p,openingTime,closingTime));
+		SuperActivity activity = new SuperActivity(nome,u, p,openingTime,closingTime);
+		
+		
+		activity.reclaimActivity((Partner)u);
+		
+		a.addActivity( activity);
 	}
 	
 	public static void createCertifiedActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime, LocalDate startDate, LocalDate endDate) {
-		a.addActivity( new CertifiedActivity(nome,u, p,openingTime,closingTime,startDate,endDate));
+		SuperActivity activity = new SuperActivity(nome,u, p,openingTime,closingTime,startDate,endDate);
+		activity.reclaimActivity((Partner)u);
+		
+		a.addActivity( activity);
 	}
 	
 	public static void createCertifiedActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime, LocalDate startDate, LocalDate endDate, Cadence cadence ) {
-		a.addActivity( new CertifiedActivity(nome,u, p,openingTime,closingTime,startDate,endDate,cadence));
+		SuperActivity activity = new SuperActivity(nome,u, p,openingTime,closingTime,startDate,endDate,cadence);
+		activity.reclaimActivity((Partner)u);
+		
+		a.addActivity( activity);
 	}
 
 }
