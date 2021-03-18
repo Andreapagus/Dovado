@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import logic.model.Cadence;
+import logic.model.Place;
+import logic.model.SuperActivity;
+import logic.model.SuperUser;
 
 public class CreateActivityBean {
 	private int startYear;
@@ -17,10 +20,9 @@ public class CreateActivityBean {
 	private int endDay;
 	private int endHour;
 	private int endMinutes;
-	
+
 	private ActivityType type;
 	private Cadence cadence;
-	
 	
 	public void setStartYear(int startYear) {
 		this.startYear = startYear;
@@ -93,11 +95,7 @@ public class CreateActivityBean {
 	public ActivityType getType() {
 		return type;
 	}
-	
-	
-	
-	
-	
+
 	
 	
 }

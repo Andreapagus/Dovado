@@ -6,7 +6,7 @@ import logic.model.*;
 
 public class PlayActivityController {
 	private Activity activity;
-	private ChannellController cController;
+	private ChannelController cController;
 		
 	public PlayActivityController(Activity activity) {
 		this.activity = activity;
@@ -16,7 +16,7 @@ public class PlayActivityController {
 		
 		if (this.cController == null) {
 			
-			this.cController  = new ChannellController(this.activity);
+			this.cController  = new ChannelController(this.activity);
 		}
 		
 		ArrayList<String[]> chat = this.cController.formattedChat(user);

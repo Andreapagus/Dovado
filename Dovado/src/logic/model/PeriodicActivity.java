@@ -20,8 +20,18 @@ public class PeriodicActivity extends FrequencyOfRepeat{
 		
 		this.cadence = cadence;
 	}
+
+	public Cadence getCadence() {
+		return this.cadence;
+	}
+
+	public LocalDate getStartDate() {
+		return this.startDate;
+	}
 	
-	
+	public LocalDate getEndDate() {
+		return this.endDate;
+	}
 	
 	
 	@Override

@@ -31,7 +31,14 @@ public abstract class FrequencyOfRepeat {
 		if(t1<= 0 && t2 >0) return true;
 		else return false;
 	}
-	
+
+	public LocalTime getOpeningTime() {
+		return openingTime;
+	}
+
+	public LocalTime getClosingTime() {
+		return closingTime;
+	}
 	
 	public abstract boolean checkPlayability(LocalDateTime timestamp);
 

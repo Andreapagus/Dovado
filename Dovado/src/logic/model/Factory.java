@@ -3,48 +3,39 @@ package logic.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import logic.controller.CreateActivityBean;
+
 public class Factory {
-	private static ActivityVector a = ActivityVector.getActivityVector();
+	private static SuperActivity newActivity;
 	
-	public static void createNormalActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime) {
-		SuperActivity activity = new SuperActivity(nome,u, p,openingTime,closingTime);
-		
-		a.addActivity(activity);
+	public static SuperActivity createNormalActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime) {
+		newActivity = new NormalActivity(nome,u, p,openingTime,closingTime);
+		return newActivity;
 	}
 	
-	public static void createNormalActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime, LocalDate startDate, LocalDate endDate) {
-		SuperActivity activity = new SuperActivity(nome,u, p,openingTime,closingTime,startDate,endDate);
-		
-		a.addActivity( activity);
+	public static SuperActivity createNormalActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime, LocalDate startDate, LocalDate endDate) {
+		newActivity = new NormalActivity(nome,u, p,openingTime,closingTime,startDate,endDate);
+		return newActivity;
 	}
 	
-	public static void createNormalActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime, LocalDate startDate, LocalDate endDate, Cadence cadence ) {
-		SuperActivity activity = new SuperActivity(nome,u, p,openingTime,closingTime,startDate,endDate,cadence);
-		
-		a.addActivity( activity);
+	public static SuperActivity createNormalActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime, LocalDate startDate, LocalDate endDate, Cadence cadence ) {
+		newActivity = new NormalActivity(nome,u, p,openingTime,closingTime,startDate,endDate,cadence);
+		return newActivity;
 	}
 	
-	public static void createCertifiedActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime) {
-		SuperActivity activity = new SuperActivity(nome,u, p,openingTime,closingTime);
-		
-		
-		activity.reclaimActivity((Partner)u);
-		
-		a.addActivity( activity);
+	public static SuperActivity createCertifiedActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime) {
+		newActivity = new CertifiedActivity(nome,u, p,openingTime,closingTime);
+		return newActivity;
 	}
 	
-	public static void createCertifiedActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime, LocalDate startDate, LocalDate endDate) {
-		SuperActivity activity = new SuperActivity(nome,u, p,openingTime,closingTime,startDate,endDate);
-		activity.reclaimActivity((Partner)u);
-		
-		a.addActivity( activity);
+	public static SuperActivity createCertifiedActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime, LocalDate startDate, LocalDate endDate) {
+		newActivity = new CertifiedActivity(nome,u, p,openingTime,closingTime,startDate,endDate);
+		return newActivity;
 	}
 	
-	public static void createCertifiedActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime, LocalDate startDate, LocalDate endDate, Cadence cadence ) {
-		SuperActivity activity = new SuperActivity(nome,u, p,openingTime,closingTime,startDate,endDate,cadence);
-		activity.reclaimActivity((Partner)u);
-		
-		a.addActivity( activity);
+	public static SuperActivity createCertifiedActivity(String nome, SuperUser u, Place p,LocalTime openingTime, LocalTime closingTime, LocalDate startDate, LocalDate endDate, Cadence cadence ) {
+		newActivity = new CertifiedActivity(nome,u, p,openingTime,closingTime,startDate,endDate,cadence);
+		return newActivity;
 	}
 
 }

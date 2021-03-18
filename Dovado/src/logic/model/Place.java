@@ -3,28 +3,51 @@ import java.util.ArrayList;
 
 public class Place {
 	private int id;
+	private String civico;
+	private String city;
+	private String region;
+	private String address;
 	private String name;
 	private Partner owner;
 	private ArrayList<Activity> hostedActivities;
 	
-	public Place(int id,String name){
-		this.id = id;
+	public Place(String name,String address,String city,String region,String civico){
 		this.name = name;
+		this.address = address;
+		this.city = city;
+		this.region = region;
+		this.civico = civico;
 		owner = null;
 		hostedActivities = new ArrayList<Activity>();
+		
 	}
 	
-	public Place(int id, String name,Partner o) {
-		this(id,name);
+	public Place(String name,String address,String city,String region,String civico,Partner o) {
+		this(name,address,city,region,civico);
 		setOwner(o);
 	}
 	
 	public void setOwner(Partner o) {
-		owner = o;
+		this.owner = o;
 	};
 	
 	public void addActivity(Activity a) {
-		hostedActivities.add(a);
+		this.hostedActivities.add(a);
 	}
 
+	public String getName() {
+		return this.name;
+	}
+	
+	public String getAddress() {
+		return this.address;
+	}
+
+	public String getCity() {
+		return this.city;
+	}
+	
+	public String getRegion() {
+		return this.region;
+	}
 }

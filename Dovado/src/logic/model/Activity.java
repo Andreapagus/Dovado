@@ -3,9 +3,9 @@ package logic.model;
 import java.time.LocalDateTime;
 
 public interface Activity {
-	void playActivity(User u);
+	void PlayActivity(User u);
 	
 	boolean playableOnThisDate(LocalDateTime timestamp);
 	
-	Channell getChannell();
+	Channel getChannel();
 }

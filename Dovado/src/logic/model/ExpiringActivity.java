@@ -31,4 +31,13 @@ public class ExpiringActivity extends FrequencyOfRepeat {
 		else return false;
 	} 
 
+	public LocalDate getStartDate() {
+		return this.startDate;
+	}
+	
+	public LocalDate getEndDate() {
+		return this.endDate;
+	}
+	
+	
 }
