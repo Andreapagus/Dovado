@@ -1,0 +1,95 @@
+
+/* import
+***********************************************/
+@font-face {
+    src: url("./font/Montserrat-Regular.ttf");
+}
+
+@font-face{
+	src: url("./font/Montserrat-Bold.ttf");
+}
+
+/* Text
+***********************************************/
+
+.root *{
+  -fx-font-family: 'Montserrat';
+}
+
+.active{
+  -fx-font-weight:bold;
+}
+
+.logo{
+  -fx-font-family: 'Montserrat';
+  -fx-font-weight: bold;
+}
+
+/* navbar styling
+***********************************************/
+.navbar-item{
+  -fx-background-color: none;
+}
+
+.navbar-item:hover {
+  -fx-background-color: #77ac39;
+}
+
+.navbar-item:pressed {
+  -fx-scale-y: 0.9;
+  -fx-scale-x: 0.9;
+}
+
+.navbar {
+  -fx-font-family: 'Montserrat';
+  -fx-background-color: #8bc34a;
+}
+
+.context-menu {
+    /*-fx-skin: "com.sun.javafx.scene.control.skin.ContextMenuSkin";*/
+    -fx-background-color: #8bc34a;
+    /*-fx-background-insets: 0, 1, 2;*/
+    -fx-background-radius: 0 6 6 6, 0 5 5 5, 0 4 4 4;
+    -fx-padding: 0.333333em 0.083333em 0.666667em 0.083333em; /* 4 1 8 1 */
+}
+
+.logout .label {
+  -fx-text-fill: #f23232;
+}
+
+/* buttons
+***************************************************/
+.btn {
+  -fx-background-color: #8bc34a;
+  -fx-background-radius: 999;
+  -fx-padding: 10 14 10 14;
+  -fx-font-family: 'Montserrat';
+  -fx-font-weight: bold;
+  -fx-text-fill: white;
+}
+
+.btn:hover {
+  -fx-background-color: #77ac39;
+}
+
+.btn:pressed{
+  -fx-scale-y: 0.9;
+  -fx-scale-x: 0.9;
+}
+
+/* listview
+ **************************************************/
+ 
+ .list-cell{
+ 	/*-fx-text-fill: white;*/
+ 	-fx-font-size: 16;
+ 	-fx-padding: 10;
+ 	
+ 	/*-fx-background-image: url(https://source.unsplash.com/random);
+ 	-fx-background-position: center center;*/
+ }
+ 
+ .list-cell:selected{
+ 	-fx-font-weight: bold;
+ 	-fx-background-color:  #8bc34a;
+ }
