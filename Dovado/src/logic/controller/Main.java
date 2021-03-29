@@ -3,7 +3,6 @@
  */
 package logic.controller;
 
-import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -17,7 +16,6 @@ import logic.model.Place;
 import logic.model.PlaceBean;
 import logic.model.SuperActivity;
 import logic.model.User;
-import org.json.simple.*;
 
 /**
  * @author sav
@@ -236,7 +234,7 @@ public class Main {
 		System.out.println(u.getSchedule()+"\n");
 		//----- FINE TEST ADD ACTIVITY TO SCHEDULE------------------------------------------------
 		
-		
+		try {
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  1 fattibile tutti i giorni dalle 9:30 alle 18 sia fattibile oggi alle 19:17 ...");
 		if(cf.findActivity(p,0).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,12), LocalTime.of(19, 17)))) System.out.println("Ã¨ fattibile :)\n");
@@ -297,7 +295,10 @@ public class Main {
 		if(cf.findActivity(p,4).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,19), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
-	
+		} catch (NullPointerException e) {
+			System.out.println("\nUna delle attività non è stata trovata nel file JSON\n");
+			e.printStackTrace();
+		}
 		
 		//----------------TEST CHANNELL----------------------
 		System.out.println("\n"+ "------------------------------TEST CHANNELL-------------------------------------------"+"\n");

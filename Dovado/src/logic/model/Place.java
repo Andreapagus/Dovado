@@ -26,9 +26,13 @@ public class Place {
 		this(name,address,city,region,civico);
 		setOwner(o);
 	}
-	
+
 	public void setOwner(Partner o) {
 		this.owner = o;
+	};
+	
+	public void setId(int id) {
+		this.id = id;
 	};
 	
 	public void addActivity(Activity a) {

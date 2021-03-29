@@ -25,15 +25,19 @@ public class CreatePlaceController {
 	
 	public Place createPlace(String name,String address,String city,String region, String civico,Partner owner){
 		this.place = new Place(name, address,city,region,civico,owner);
-		this.addPlaceToDB(address, name, city, region, civico, owner);
-		System.out.println("\n\nPosto già creato precedentemente\n\n");
+		int id = this.addPlaceToDB(address, name, city, region, civico, owner); 
+		if(id < 0)
+			System.out.println("\n\nPosto già creato precedentemente\n\n");
+		this.place.setId(id);
 		return this.place;
 	}
 	
 	public Place createPlaceWithoutOwner(String name,String address,String city,String region, String civico){
 		this.place = new Place(name, address,city,region,civico,null);
-		this.addPlaceToDB(address, name, city, region, civico, null);
-		System.out.println("\n\nPosto già creato precedentemente\n\n");
+		int id = this.addPlaceToDB(address, name, city, region, civico, null); 
+		if(id < 0)
+			System.out.println("\n\nPosto già creato precedentemente\n\n");
+		this.place.setId(id);
 		return this.place;
 	}
 	
@@ -46,11 +50,11 @@ public class CreatePlaceController {
 	
 	}
 	
-	private boolean addPlaceToDB(String address, String name, String city, String region,String civico, Partner owner) {
-	
-		if(DAOPlace.getInstance().addPlaceToJSON(address, name, city, region, civico, owner))
-			return true;
-		return false;
+	private int addPlaceToDB(String address, String name, String city, String region,String civico, Partner owner) {
+		int result_id = DAOPlace.getInstance().addPlaceToJSON(address, name, city, region, civico, owner);
+		if(result_id>0)
+			return result_id;
+		return -1;
 	
 	}
 	

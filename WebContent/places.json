@@ -1,8 +1,1 @@
-{"places":[{"owner":null,"address":"Viale Somalia","city":"Roma","activities":[],"name":"Casa di Andrea","civico":"201","region":"Lazio"},
-	{"owner":null,"address":"Via dei prati fiscali","city":"Roma","activities":[],"name":"Casa di Tupac","civico":"291","region":"Lazio"},
-	{"owner":null,"address":"Via nicola salvi","city":"Roma","activities":
-		[{"creator":"sessione1","closing":"18:00","enddate":null,"name":"ciao","certified":"no","startdate":null,"opening":"09:30","cadence":null},
-			{"creator":"Sessione2","closing":"18:00","enddate":"2021-01-12","name":"ciao2","certified":"yes","startdate":"2021-01-12","opening":"09:30","cadence":"WEEKLY"},
-			{"creator":"Sessione2","closing":"18:00","enddate":"2021-01-15","name":"ciao3","certified":"yes","startdate":"2021-01-12","opening":"09:30","cadence":"MONTHLY"},
-			{"creator":"Sessione2","closing":"18:00","enddate":"2021-01-15","name":"ciao4","certified":"yes","startdate":"2021-01-12","opening":"09:30","cadence":"ANNUALLY"},
-			{"creator":"Sessione2","closing":"18:00","enddate":"2021-01-19","name":"ciao5","certified":"yes","startdate":"2021-01-19","opening":"09:30","cadence":null}],"name":"Concerto di Tupac","civico":"65","region":"Lazio"}]}
+{"places":[{"owner":null,"address":"Viale Somalia","city":"Roma","activities":[],"name":"Casa di Andrea","civico":"201","id":0,"region":"Lazio"},{"owner":null,"address":"Via dei prati fiscali","city":"Roma","activities":[],"name":"Casa di Tupac","civico":"291","id":1,"region":"Lazio"},{"owner":null,"address":"Via nicola salvi","city":"Roma","activities":[{"id":0},{"id":1},{"id":2},{"id":3},{"id":4},{"id":5},{"id":6},{"id":7},{"id":8},{"id":9}],"name":"Concerto di Tupac","civico":"65","id":2,"region":"Lazio"}]}

@@ -26,7 +26,7 @@ public class DAOPlace {
 	
 	public Place findPlaceInJSON(String name, String city, String region) {
 		JSONParser parser = new JSONParser();
-		int i;
+		int i,id;
 		try 
 		{
 			Object places = parser.parse(new FileReader("WebContent/places.json"));
@@ -42,9 +42,11 @@ public class DAOPlace {
 				String cityPrint = (String) result.get("city");
 				String regionPrint = (String) result.get("region");
 				
-				if (name.equals(namePrint) && city.equals(cityPrint) && region.equals(regionPrint))
-					return new Place(namePrint,(String) result.get("address"),cityPrint,regionPrint,(String) result.get("civico"),(Partner) result.get("owner"));
-				
+				if (name.equals(namePrint) && city.equals(cityPrint) && region.equals(regionPrint)) {
+					Place placeFound = new Place(namePrint,(String) result.get("address"),cityPrint,regionPrint,(String) result.get("civico"),(Partner) result.get("owner"));
+					placeFound.setId(i);
+					return placeFound;
+				}
 				
 			}
 			
@@ -60,8 +62,8 @@ public class DAOPlace {
 	}
 	
 	
-	public boolean addPlaceToJSON(String address, String name, String city, String region,String civico, Partner owner) {
-		int i;
+	public int addPlaceToJSON(String address, String name, String city, String region,String civico, Partner owner) {
+		int i,id=0;
 		JSONParser parser = new JSONParser();
 		JSONObject newPlace = new JSONObject();
 		JSONArray newPlaceActivities = new JSONArray();
@@ -87,7 +89,7 @@ public class DAOPlace {
 			for(i=0;i<placeArray.size();i++) 
 			{
 				result = (JSONObject)placeArray.get(i);
-				
+
 				String addressPrint = (String) result.get("address");
 				String civicoPrint = (String) result.get("civico");
 				String namePrint = (String) result.get("name");
@@ -96,9 +98,10 @@ public class DAOPlace {
 				String ownerPrint = (String) result.get("owner");			
 				
 				if(address.equals(addressPrint) && civico.equals(civicoPrint) && name.equals(namePrint) && city.equals(cityPrint) && region.equals(regionPrint))
-					return false;
+					return -1;
 			}
-	
+			id=i;
+			newPlace.put("id", id);
 			placeArray.add(newPlace);
 			
 			FileWriter file = new FileWriter("WebContent/places.json");
@@ -108,12 +111,12 @@ public class DAOPlace {
 		} 
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
-			return false;}
+			return -1;}
 		catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			return -1;
 			}
-		return true;
+		return id;
 	}
 	
 }

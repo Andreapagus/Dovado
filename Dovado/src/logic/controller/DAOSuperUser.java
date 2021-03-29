@@ -46,6 +46,7 @@ public class DAOSuperUser {
 			if (findSuperUser(username)==(null)) {				
 				JSONObject newUser = new JSONObject();
 
+				newUser.put("id", userArray.size());
 				newUser.put("username", username);
 				newUser.put("partner", partner);
 				userArray.add(newUser);

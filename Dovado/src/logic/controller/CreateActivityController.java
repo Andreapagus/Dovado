@@ -95,11 +95,14 @@ public class CreateActivityController {
 			Object places = parser.parse(new FileReader("WebContent/places.json"));
 			JSONObject place = (JSONObject) places;
 			JSONArray placeArray = (JSONArray) place.get("places");
+			
+			Object activitiesParser = parser.parse(new FileReader("WebContent/activities.json"));
+			JSONObject activitiesJOBJ = (JSONObject) activitiesParser;
+			JSONArray activityArray = (JSONArray) activitiesJOBJ.get("activities");
+			
 			JSONObject result;
-			JSONObject activityToAdd = new JSONObject();
+			JSONObject activityToAdd = new JSONObject(),activityIdToAdd = new JSONObject();
 
-			if(fac.findActivity(p, placeArray.size())!=null)
-				return false;
 			
 			activityToAdd.put("name", activity.getName());
 			activityToAdd.put("creator", activity.getCreator().getUsername());
@@ -128,6 +131,14 @@ public class CreateActivityController {
 				
 			}
 			activityToAdd.put("certified", cert);
+
+			if(activityArray!=null) {
+				activityToAdd.put("id",activityArray.size());
+				activityIdToAdd.put("id",activityArray.size());
+			} else {
+				activityToAdd.put("id",0);
+				activityIdToAdd.put("id",0);
+			}
 			
 			for(i=0;i<placeArray.size();i++) 
 			{
@@ -139,14 +150,24 @@ public class CreateActivityController {
 				
 				if (activity.getPlace().getName().equals(namePrint) && activity.getPlace().getCity().equals(cityPrint) && activity.getPlace().getRegion().equals(regionPrint)) {
 					
-					JSONArray activitiesArray = (JSONArray) result.get("activities");
-					activitiesArray.add(activityToAdd);
-					result.put("activities", activitiesArray);
+					JSONArray activitiesIdArray = (JSONArray) result.get("activities");
+					
+					if(fac.findActivity(p, activitiesIdArray.size())!=null)	//Passando il posto in cui sto aggiungendo l'attività, 
+						return false;	
+					activitiesIdArray.add(activityIdToAdd); //Salvo l'id dell'attività al posto di appartenenza.
+					result.put("activities", activitiesIdArray);
 					
 					FileWriter file = new FileWriter("WebContent/places.json");
 					file.write(place.toString());
 					file.flush();
 					file.close();
+					
+					activityArray.add(activityToAdd);
+					
+					FileWriter file2 = new FileWriter("WebContent/activities.json");
+					file2.write(activitiesJOBJ.toString());
+					file2.flush();
+					file2.close();
 					
 					return true;
 				}
