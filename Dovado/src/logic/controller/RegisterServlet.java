@@ -39,14 +39,17 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		dao = DAOSuperUser.getInstance();
+		Username = request.getParameter("Uname");
+		Password = request.getParameter("Password");
 		if (dao.findSuperUser(Username) != null) {
 			System.out.println("L'utente esiste");
 			request.setAttribute("exist","Il nome utente esiste già");
-			request.getRequestDispatcher(Password).forward(request, response);
+			request.getRequestDispatcher("register.jsp").forward(request, response);
 			
 		}
 		else {
 			System.out.println("Non esiste l'utente");
+			dao.addUserToJSON(Username, 0);
 			response.sendRedirect("login.jsp");
 
 		}
