@@ -38,6 +38,7 @@ public class DAOSuperUser {
 	public boolean addUserToJSON(String username, int partner) {
 		JSONParser parser = new JSONParser();
 		try {
+			System.out.println("Working principale = " + System.getProperty("user.dir"));
 			Object users = parser.parse(new FileReader("WebContent/user.json"));
 			JSONObject userObj = (JSONObject) users;
 			JSONArray userArray = (JSONArray) userObj.get("users");
@@ -63,6 +64,7 @@ public class DAOSuperUser {
 			return false;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
+			System.out.println("Sapendo che la tua cartella di Working principale è : " + System.getProperty("user.dir") + " allora crea qui una cartella WebContent e copiaci il file user.json ");
 			e.printStackTrace();
 			return false;
 		} catch (IOException e) {
@@ -82,6 +84,7 @@ public class DAOSuperUser {
 		int i;
 		try 
 		{
+			System.out.println("Working principale = " + System.getProperty("user.dir"));
 			Object users = parser.parse(new FileReader("WebContent/user.json"));
 			JSONObject userRes = (JSONObject) users;
 			JSONArray userArray = (JSONArray) userRes.get("users");
@@ -108,6 +111,7 @@ public class DAOSuperUser {
 			
 		} 
 		catch (FileNotFoundException e) {
+			System.out.println("Sapendo che la tua cartella di Working principale è : " + System.getProperty("user.dir") + " allora crea qui una cartella WebContent e copiaci il file user.json ");
 			e.printStackTrace();
 			return null;
 		}

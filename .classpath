@@ -1,11 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+	<classpathentry kind="src" output="target/classes" path="Dovado/src">
 		<attributes>
-			<attribute name="module" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="Dovado/src"/>
-	<classpathentry kind="lib" path="D:/Programming/Librerie/json-simple-1.1.1.jar"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="test" value="true"/>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11">
+		<attributes>
+			<attribute name="module" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Kora/eclipse-workspace/Dovado/json-simple-1.1.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.base.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.media.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.web.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx-swt.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>
