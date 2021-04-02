@@ -320,9 +320,16 @@ public class Main {
 		ClaimAPlaceController cap = new ClaimAPlaceController();
 		
 		System.out.println("\n-------------------------------------------Aggiunta Propietario a posto già esistente------------------------------------------------\n");
-		cap.claimPlaceOwnership(partner, p);
+		if(cap.claimPlaceOwnership(partner, p))
+			System.out.println("Operazione effettuata con successo!");
+		else System.out.println("Operazione di aggiunta proprietario del posto fallita!");
 		
+		ClaimActivityController ca = new ClaimActivityController();
 		
+		System.out.println("\n-------------------------------------------Aggiunta Propietario a posto già esistente------------------------------------------------\n");
+		if(ca.claimActivityOwnership(partner, cf.findActivityByID(p,0)))
+			System.out.println("Operazione effettuata con successo!");
+		else System.out.println("Operazione di aggiunta proprietario dell'attività fallita!");
 		
 	}
 

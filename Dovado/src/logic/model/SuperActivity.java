@@ -7,6 +7,7 @@ import java.time.LocalTime;
 import logic.controller.CreateActivityBean;
 
 public abstract class SuperActivity {
+	private int id;
 	private String name;
 	private SuperUser creator;
 	private Place place;
@@ -49,6 +50,12 @@ public abstract class SuperActivity {
 	public Place getPlace() {
 		return this.place;
 	}
+	public int getId() {
+		return this.id;
+	}
+	public void setId(int id) {
+		this.id=id;
+	}
 	public FrequencyOfRepeat getFrequency() {
 		return this.frequencyOfRepeat;
 	}
@@ -58,7 +65,7 @@ public abstract class SuperActivity {
 	public SuperUser getCreator() {
 		return this.creator;
 	}
-	public void setCreator(User creator) {
+	public void setCreator(SuperUser creator) {
 		this.creator = creator;
 	}
 	
