@@ -1,5 +1,6 @@
 package logic.controller;
 
+import logic.model.DAOSuperUser;
 import logic.model.Partner;
 import logic.model.User;
 

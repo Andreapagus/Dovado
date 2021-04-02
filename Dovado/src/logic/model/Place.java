@@ -9,7 +9,10 @@ public class Place {
 	private String address;
 	private String name;
 	private Partner owner;
-	private ArrayList<Activity> hostedActivities;
+	
+	//Modificato l'arraylist di attività in un array di long, in questo modo
+	//Verranno indicate le attività a cui fa riferimento il posto mediante il loro id.
+	private ArrayList<Long> hostedActivities;
 	
 	public Place(String name,String address,String city,String region,String civico){
 		this.name = name;
@@ -17,8 +20,8 @@ public class Place {
 		this.city = city;
 		this.region = region;
 		this.civico = civico;
-		owner = null;
-		hostedActivities = new ArrayList<Activity>();
+		this.owner = null;
+		this.hostedActivities = new ArrayList<Long>();
 		
 	}
 	
@@ -30,14 +33,18 @@ public class Place {
 	public void setOwner(Partner o) {
 		this.owner = o;
 	};
-	
+
 	public void setId(int id) {
 		this.id = id;
 	};
 	
-	public void addActivity(Activity a) {
-		this.hostedActivities.add(a);
+	public void addActivity(Long id) {
+		this.hostedActivities.add(id);
 	}
+
+	public int getId() {
+		return this.id;
+	};
 
 	public String getName() {
 		return this.name;
@@ -53,5 +60,13 @@ public class Place {
 	
 	public String getRegion() {
 		return this.region;
+	}
+
+	public Partner getOwner() {
+		return this.owner;
+	}
+
+	public Object getCivico() {
+		return this.civico;
 	}
 }

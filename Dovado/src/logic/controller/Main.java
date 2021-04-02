@@ -193,7 +193,7 @@ public class Main {
 		//Tramite find activity trovo la prima attività del posto p, poi ottenuta l'attività con un metodo generico che restituisce SuperActivity
 		//Controllo che tipo di istanza sia e a seconda di questo restituisco o meno il reward.
 		
-		activityFound = cf.findActivity(p,0);
+		activityFound = cf.findActivityByID(p,0);
 		if(activityFound instanceof CertifiedActivity) {
 			activityIsCertified = (CertifiedActivity)activityFound;
 			activityIsCertified.PlayActivity(u);
@@ -203,7 +203,7 @@ public class Main {
 		
 		System.out.println("\nL'utente farà  un'attività  Certificata:");
 		
-		activityFound = cf.findActivity(p,1);
+		activityFound = cf.findActivityByID(p,1);
 		if(activityFound instanceof CertifiedActivity) {
 			activityIsCertified = (CertifiedActivity)activityFound;
 			activityIsCertified.PlayActivity(u);
@@ -229,7 +229,7 @@ public class Main {
 		
 		AddActivityToScheduleController cs = new AddActivityToScheduleController(u,faciolo);
 		
-		cs.addActivityToSchedule((Activity)cf.findActivity(p,1));
+		cs.addActivityToSchedule((Activity)cf.findActivityByID(p,1));
 		
 		System.out.println(u.getSchedule()+"\n");
 		//----- FINE TEST ADD ACTIVITY TO SCHEDULE------------------------------------------------
@@ -237,62 +237,62 @@ public class Main {
 		try {
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  1 fattibile tutti i giorni dalle 9:30 alle 18 sia fattibile oggi alle 19:17 ...");
-		if(cf.findActivity(p,0).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,12), LocalTime.of(19, 17)))) System.out.println("Ã¨ fattibile :)\n");
+		if(cf.findActivityByID(p,0).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,12), LocalTime.of(19, 17)))) System.out.println("Ã¨ fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  2 fattibile ogni Martedì dalle  9:30 alle 18 sia fattibile oggi (che è martedì) alle 10:17 ...");
-		if(cf.findActivity(p,1).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,12), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,1).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,12), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  2 fattibile ogni Martedì dalle  9:30 alle 18 sia fattibile domani (che è mercoledì miei dudi) alle 10:17 ...");
-		if(cf.findActivity(p,1).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,13), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,1).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,13), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  2 fattibile ogni Martedì dalle  9:30 alle 18 sia fattibile il 15 giugno 2021 (che è martedì) alle 10:17 ...");
-		if(cf.findActivity(p,1).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 6,15), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,1).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 6,15), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 	
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  3 fattibile ogni mese dal 12 al 15 dalle  9:30 alle 18 sia fattibile il 15 giugno 2021 alle 10:17 ...");
-		if(cf.findActivity(p,2).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 6,15), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,2).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 6,15), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  3 fattibile ogni mese dal 12 al 15 dalle  9:30 alle 18 sia fattibile il 17 giugno 2021 alle 10:17 ...");
-		if(cf.findActivity(p,2).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 6,17), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,2).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 6,17), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  4 fattibile ogni anno dal 12/01 al 15/01 dalle  9:30 alle 18 sia fattibile il 17 giugno 2021 alle 10:17 ...");
-		if(cf.findActivity(p,3).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 6,17), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,3).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 6,17), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  4 fattibile ogni anno dal 12/01 al 15/01 dalle  9:30 alle 18 sia fattibile il 13 gennaio 2022 alle 10:17 ...");
-		if(cf.findActivity(p,3).playableOnThisDate(LocalDateTime.of(LocalDate.of(2022, 1,13), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,3).playableOnThisDate(LocalDateTime.of(LocalDate.of(2022, 1,13), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  5 fattibile solo il 19/01/2020 dalle  9:30 alle 18 sia fattibile il 13 gennaio 2022 alle 10:17 ...");
-		if(cf.findActivity(p,4).playableOnThisDate(LocalDateTime.of(LocalDate.of(2022, 1,13), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,4).playableOnThisDate(LocalDateTime.of(LocalDate.of(2022, 1,13), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  5 fattibile solo il 19/01/2020 dalle  9:30 alle 18 sia fattibile il 19 gennaio 2022 alle 10:17 ...");
-		if(cf.findActivity(p,4).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,19), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,4).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,19), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		} catch (NullPointerException e) {
@@ -303,7 +303,7 @@ public class Main {
 		//----------------TEST CHANNELL----------------------
 		System.out.println("\n"+ "------------------------------TEST CHANNELL-------------------------------------------"+"\n");
 		
-		PlayActivityController cpa = new PlayActivityController((Activity)cf.findActivity(p,3));
+		PlayActivityController cpa = new PlayActivityController((Activity)cf.findActivityByID(p,3));
 		
 		cpa.readOnChannell(0);
 		
@@ -317,7 +317,10 @@ public class Main {
 		
 		cpa.readOnChannell(1);
 		
+		ClaimAPlaceController cap = new ClaimAPlaceController();
 		
+		System.out.println("\n-------------------------------------------Aggiunta Propietario a posto già esistente------------------------------------------------\n");
+		cap.claimPlaceOwnership(partner, p);
 		
 		
 		

@@ -152,7 +152,7 @@ public class CreateActivityController {
 					
 					JSONArray activitiesIdArray = (JSONArray) result.get("activities");
 					
-					if(fac.findActivity(p, activitiesIdArray.size())!=null)	//Passando il posto in cui sto aggiungendo l'attività, 
+					if(fac.isInJSON(p, activity.getName(),activity.getCreator().getUsername()))	//Passando il posto in cui sto aggiungendo l'attività, 
 						return false;	
 					activitiesIdArray.add(activityIdToAdd); //Salvo l'id dell'attività al posto di appartenenza.
 					result.put("activities", activitiesIdArray);
