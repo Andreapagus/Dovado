@@ -1,5 +1,6 @@
 package logic.view;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,30 +16,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 public class HomeView implements Initializable{
 	
+    
     @FXML
-    private Text timer;
-
-    @FXML
-    private Text completed;
-
-    @FXML
-    private Text completedPerc;
-
-    @FXML
-    private Text failed;
-
-    @FXML
-    private Text failedPerc;
-
-    @FXML
-    private Text remaining;
-
-    @FXML
-    private Text remainingPerc;
+    private WebView map;
     
     @FXML
     private ListView<String> userChallenges;
@@ -50,7 +35,7 @@ public class HomeView implements Initializable{
 			Navbar.authenticatedSetup();
 			Scene scene = new Scene(root,Navbar.getWidth(),Navbar.getHeight());
 			scene.getStylesheets().add(Main.class.getResource("Dovado.css").toExternalForm());
-			current.setTitle("GoodHabits - home");
+			current.setTitle("Dovado - home");
 			current.setScene(scene);
 			VBox home = new VBox();
 			try {
@@ -68,8 +53,24 @@ public class HomeView implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		ObservableList<String> names = FXCollections.observableArrayList(
-		          "Julia", "Ian", "Sue", "Matthew", "Hannah", "Stephan", "Denise");
-		userChallenges.setItems(names);
+		System.out.println("ok");
+		System.out.println("Working Directory = " + System.getProperty("user.dir"));		
+		try{
+			
+			//map.getEngine().load("https://www.google.it/maps");
+			//map.getEngine().load("http://bl.ocks.org/awoodruff/e9739a6719e0604eef58");
+			
+			
+			File f = new File("WebContent/map.html");
+			map.getEngine().setJavaScriptEnabled(true);
+			//System.setProperty("sun.net.http.allowRestrictedHeaders", "true");
+			map.getEngine().load(f.toURI().toString());
+			
+			map.getEngine().executeScript("if (!document.getElementById('FirebugLite')){E = document['createElement' + 'NS'] && document.documentElement.namespaceURI;E = E ? document['createElement' + 'NS'](E, 'script') : document['createElement']('script');E['setAttribute']('id', 'FirebugLite');E['setAttribute']('src', 'https://getfirebug.com/' + 'firebug-lite.js' + '#startOpened');E['setAttribute']('FirebugLite', '4');(document['getElementsByTagName']('head')[0] || document['getElementsByTagName']('body')[0]).appendChild(E);E = new Image;E['setAttribute']('src', 'https://getfirebug.com/' + '#startOpened');}"); 
+			
+			System.out.println(map.getEngine().getUserAgent());
+		}catch(Error e) {
+			System.out.println(e);
+		}
 	}
 }
