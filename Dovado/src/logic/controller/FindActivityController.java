@@ -69,27 +69,27 @@ public class FindActivityController {
 									
 									//Se startdate è nulla allora l'attività sarà chiaramente un'attività Continuos.
 									if((activityJSON.get("startdate"))==null)
-										return new CertifiedActivity((String)activityJSON.get("name"),daoSU.findSuperUser((String)activityJSON.get("creator")), p,LocalTime.parse((String)activityJSON.get("opening")),LocalTime.parse((String)activityJSON.get("closing")));
+										return new CertifiedActivity((String)activityJSON.get("name"),daoSU.findSuperUser((String)activityJSON.get("creator"),"ELIMINARE"), p,LocalTime.parse((String)activityJSON.get("opening")),LocalTime.parse((String)activityJSON.get("closing")));
 
 									//Se cadence è nulla allora l'attività sarà chiaramente un'attività Expiring.
 									if((activityJSON.get("cadence"))==null)
-										return new CertifiedActivity((String)activityJSON.get("name"),daoSU.findSuperUser((String)activityJSON.get("creator")), p, LocalTime.parse((String)activityJSON.get("opening")),LocalTime.parse((String)activityJSON.get("closing")), LocalDate.parse((String)activityJSON.get("startdate")), LocalDate.parse((String)activityJSON.get("enddate")));
+										return new CertifiedActivity((String)activityJSON.get("name"),daoSU.findSuperUser((String)activityJSON.get("creator"),"ELIMINARE"), p, LocalTime.parse((String)activityJSON.get("opening")),LocalTime.parse((String)activityJSON.get("closing")), LocalDate.parse((String)activityJSON.get("startdate")), LocalDate.parse((String)activityJSON.get("enddate")));
 
 									//A seguito dei check si capisce che l'attività sarà Periodica.
-									return new CertifiedActivity((String)activityJSON.get("name"),daoSU.findSuperUser((String)activityJSON.get("creator")), p,LocalTime.parse((String)activityJSON.get("opening")),LocalTime.parse((String)activityJSON.get("closing")),LocalDate.parse((String)activityJSON.get("startdate")), LocalDate.parse((String)activityJSON.get("enddate")),Cadence.valueOf((String)activityJSON.get("cadence")));
+									return new CertifiedActivity((String)activityJSON.get("name"),daoSU.findSuperUser((String)activityJSON.get("creator"),"ELIMINARE"), p,LocalTime.parse((String)activityJSON.get("opening")),LocalTime.parse((String)activityJSON.get("closing")),LocalDate.parse((String)activityJSON.get("startdate")), LocalDate.parse((String)activityJSON.get("enddate")),Cadence.valueOf((String)activityJSON.get("cadence")));
 								}
 								else {	
 									
 									//Se startdate è nulla allora l'attività sarà chiaramente un'attività Continuos.
 									if((activityJSON.get("startdate"))==null)
-										return new NormalActivity((String)activityJSON.get("name"),daoSU.findSuperUser((String)activityJSON.get("creator")), p,LocalTime.parse((String)activityJSON.get("opening")),LocalTime.parse((String)activityJSON.get("closing")));
+										return new NormalActivity((String)activityJSON.get("name"),daoSU.findSuperUser((String)activityJSON.get("creator"),"ELIMINARE"), p,LocalTime.parse((String)activityJSON.get("opening")),LocalTime.parse((String)activityJSON.get("closing")));
 
 									//Se cadence è nulla allora l'attività sarà chiaramente un'attività Expiring.
 									if((activityJSON.get("cadence"))==null)
-										return new NormalActivity((String)activityJSON.get("name"),daoSU.findSuperUser((String)activityJSON.get("creator")), p,LocalTime.parse((String)activityJSON.get("opening")),LocalTime.parse((String)activityJSON.get("closing")),LocalDate.parse((String)activityJSON.get("startdate")), LocalDate.parse((String)activityJSON.get("enddate")));
+										return new NormalActivity((String)activityJSON.get("name"),daoSU.findSuperUser((String)activityJSON.get("creator"),"ELIMINARE"), p,LocalTime.parse((String)activityJSON.get("opening")),LocalTime.parse((String)activityJSON.get("closing")),LocalDate.parse((String)activityJSON.get("startdate")), LocalDate.parse((String)activityJSON.get("enddate")));
 									
 									//A seguito dei check si capisce che l'attività sarà Periodica.
-									return new NormalActivity((String)activityJSON.get("name"),daoSU.findSuperUser((String)activityJSON.get("creator")), p,LocalTime.parse((String)activityJSON.get("opening")),LocalTime.parse((String)activityJSON.get("closing")),LocalDate.parse((String)activityJSON.get("startdate")), LocalDate.parse((String)activityJSON.get("enddate")),Cadence.valueOf((String)activityJSON.get("cadence")));
+									return new NormalActivity((String)activityJSON.get("name"),daoSU.findSuperUser((String)activityJSON.get("creator"),"ELIMINARE"), p,LocalTime.parse((String)activityJSON.get("opening")),LocalTime.parse((String)activityJSON.get("closing")),LocalDate.parse((String)activityJSON.get("startdate")), LocalDate.parse((String)activityJSON.get("enddate")),Cadence.valueOf((String)activityJSON.get("cadence")));
 								}
 							}
 						}

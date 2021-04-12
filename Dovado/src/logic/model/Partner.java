@@ -4,8 +4,8 @@ public class Partner extends SuperUser{
 
 	public String name;
 	
-	public Partner(String usr) {
-		super(usr);
+	public Partner(String usr, Long id) {
+		super(usr, id);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -26,7 +26,7 @@ public class DAOSuperUser {
 		return INSTANCE;
 	}
 	
-	public boolean addUserToJSON(String username, int partner) {
+	public boolean addUserToJSON(String email, String username, int partner, String password) {
 		JSONParser parser = new JSONParser();
 		try {
 			Object users = parser.parse(new FileReader("WebContent/user.json"));
@@ -34,12 +34,14 @@ public class DAOSuperUser {
 			JSONArray userArray = (JSONArray) userObj.get("users");
 			
 			
-			if (findSuperUser(username)==(null)) {				
+			if (findSuperUser(email, password)==(null)) {				
 				JSONObject newUser = new JSONObject();
 
 				newUser.put("id", userArray.size());
+				newUser.put("email", email);
 				newUser.put("username", username);
 				newUser.put("partner", partner);
+				newUser.put("password", password);
 				userArray.add(newUser);
 
 				FileWriter file = new FileWriter("WebContent/user.json");
@@ -68,7 +70,9 @@ public class DAOSuperUser {
 		return true;
 	}
 	
-	public SuperUser findSuperUser (String username) {
+	
+	//Creiamo una istanza di una classe sapendo l'id
+	public SuperUser findSuperUserByID(Long id ){
 		JSONParser parser = new JSONParser();
 		int i;
 		try 
@@ -77,18 +81,17 @@ public class DAOSuperUser {
 			JSONObject userRes = (JSONObject) users;
 			JSONArray userArray = (JSONArray) userRes.get("users");
 			JSONObject result;
-
-			for(i=0;i<userArray.size();i++) 
-			{
+			
+			for(i=0;i<userArray.size();i++) {
 				result = (JSONObject)userArray.get(i);
 				
-				String usernameJSON = (String) result.get("username");
-
+				Long IDJSON = (Long) result.get("id");
 				try {
-					if (username.equals(usernameJSON)) {
-						if((Long)result.get("partner")==1)
-							return new Partner(username);
-						return new User(username);
+					if (id.equals(IDJSON)) {
+						
+						if((Long)result.get("partner")==1) 
+							return new Partner((String) result.get("username"), (Long) result.get("id"));
+						return new User((String) result.get("username"),(Long) result.get("id"));
 					}
 				} catch(NullPointerException e) {
 					e.printStackTrace();
@@ -109,5 +112,109 @@ public class DAOSuperUser {
 		return null;
 	}
 	
+	
+	//Creiamo istanza di una classe sapendo la mail-----COME SOTTO ANDREBBE SOSTITUITA DA UN METODO CHE RITORNI L'ID
+	public SuperUser findSuperUser(String email) {
+		return findSuperUser(email,null);
+	}
+	
+	//qui controlliamo che la mail sia uguale, utile per il login
+	public SuperUser findSuperUser (String email, String psw) {
+		JSONParser parser = new JSONParser();
+		int i;
+		try 
+		{
+			Object users = parser.parse(new FileReader("WebContent/user.json"));
+			JSONObject userRes = (JSONObject) users;
+			JSONArray userArray = (JSONArray) userRes.get("users");
+			JSONObject result;
+
+			for(i=0;i<userArray.size();i++) 
+			{
+				result = (JSONObject)userArray.get(i);
+				
+				String emailJSON = (String) result.get("email");
+				String passwordJSON = (String) result.get("password");
+				try {
+					if (email.equals(emailJSON)) {
+						if(psw==null) {
+							System.out.println("PASSWORD NULLAAAAAAA");
+						}
+						else if (!psw.equals(passwordJSON)) {
+							System.out.println("PASSWORD SBAGLIATA");
+							return null;
+						}
+						if((Long)result.get("partner")==1) 
+							return new Partner((String) result.get("username"), (Long) result.get("id"));
+						return new User((String) result.get("username"),(Long) result.get("id"));
+					}
+				} catch(NullPointerException e) {
+					e.printStackTrace();
+					return null;
+				}
+				
+			}
+			
+		} 
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return null;
+	}
+	
+	
+	//Ritorna l'ID di un elemento----- WORKINPROGRESS
+	public SuperUser findSuperUserID (String email, String psw) {
+		JSONParser parser = new JSONParser();
+		int i;
+		try 
+		{
+			Object users = parser.parse(new FileReader("WebContent/user.json"));
+			JSONObject userRes = (JSONObject) users;
+			JSONArray userArray = (JSONArray) userRes.get("users");
+			JSONObject result;
+
+			for(i=0;i<userArray.size();i++) 
+			{
+				result = (JSONObject)userArray.get(i);
+				
+				String emailJSON = (String) result.get("email");
+				String passwordJSON = (String) result.get("password");
+				try {
+					if (email.equals(emailJSON)) {
+						if(psw==null) {
+							System.out.println("PASSWORD NULLAAAAAAA");
+						}
+						else if (!psw.equals(passwordJSON)) {
+							System.out.println("PASSWORD SBAGLIATA");
+							return null;
+						}
+						if((Long)result.get("partner")==1) 
+							return new Partner((String) result.get("username"), (Long) result.get("id"));
+						return new User((String) result.get("username"),(Long) result.get("id"));
+					}
+				} catch(NullPointerException e) {
+					e.printStackTrace();
+					return null;
+				}
+				
+			}
+			
+		} 
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return null;
+	}
 	
 }

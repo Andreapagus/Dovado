@@ -37,8 +37,8 @@ public class User extends SuperUser{
 	private Schedule schedule;
 	private int wallet;
 	
-	public User(String username) {
-		super(username);
+	public User(String username, Long id) {
+		super(username, id);
 		wallet = 0;
 		schedule = new Schedule();
 	}

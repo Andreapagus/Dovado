@@ -1,1 +1,1 @@
-{"users":[{"partner":0,"id":0,"username":"Drew"},{"partner":0,"id":1,"username":"sessione1"},{"partner":1,"id":2,"username":"Sessione2"}]}
+{"users":[{"partner":0,"id":0,"username":"Drew","password":"Drew","email":"drew@drew.com"},{"partner":0,"id":1,"username":"sessione1","password":"sessione1","email":"sessione1@drew.com"},{"partner":1,"id":2,"username":"Sessione2","password":"Sessione2","email":"Sessione2@drew.com"}]}

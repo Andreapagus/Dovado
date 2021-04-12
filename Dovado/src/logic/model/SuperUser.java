@@ -2,18 +2,18 @@ package logic.model;
 
 public abstract class SuperUser {
 	private String username;
-	private int uID;
+	private Long uID;
 	
-	public SuperUser(String usr) {
+	public SuperUser(String usr,Long id) {
 		this.username = usr;
-		this.uID = 1;
+		this.uID = id;
 	}
 	
 	public String getUsername() {
 		return this.username;
 	}
 	
-	public int getUserID() {
+	public Long getUserID() {
 		return this.uID;
 	}
 	

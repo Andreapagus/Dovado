@@ -8,23 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import logic.model.DAOSuperUser;
-
 /**
- * Servlet implementation class RegisterServlet
+ * Servlet implementation class TestedActivityServlet
  */
-@WebServlet("/register")
-public class RegisterServlet extends HttpServlet {
+@WebServlet("/test")
+public class TestedActivityServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	String Username;
-	String Password;
-	String Email;
-	DAOSuperUser dao;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegisterServlet() {
+    public TestedActivityServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,30 +28,24 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Non implementato   il get. Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		HttpSession currentSession = request.getSession();
 		
-		dao = DAOSuperUser.getInstance();
-		Email = request.getParameter("Uemail");
-		Username = request.getParameter("Uname");
-		Password = request.getParameter("Password");
-		//Questo controllo già viene fatto, andrebbe solo gestito l'errore 
-		if (dao.findSuperUser(Email) != null) {
-			System.out.println("L'utente esiste");
-			request.setAttribute("exist","Esiste già un account associato a questa email");
-			request.getRequestDispatcher("register.jsp").forward(request, response);
-			
+		String usrLogin = (String) currentSession.getAttribute("User");
+		if (usrLogin == null) {
+			System.out.println("Sessione scauta");
+			request.setAttribute("sessionExpired","La sessione è scaduta, si prega di rifare il login");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 		else {
-			System.out.println("Non esiste l'utente");
-			dao.addUserToJSON(Email, Username, 0, Password);
-			response.sendRedirect("login.jsp");
-
+			response.sendRedirect("test.jsp");
 		}
 	}
 

@@ -8,17 +8,19 @@
 </head>
 <body>
   <h1>Login Page</h1>
+  <p style="color:red;">${sessionExpired}</p>
   <form action=${pageContext.request.contextPath}/login method="POST">    
-        <label><b>Username     
+        <label><b>Email     
         </b>    
         </label>    
-        <input type="text" name="Uname"  placeholder="Username">    
+        <input type="email" name="Uemail"  placeholder="Username">    
         <br><br>    
         <label><b>Password     
         </b>    
         </label>    
         <input type="Password" name="Password"  placeholder="Password">    
-        <br><br>    
+        <br>    
+        <p style="color:red;">${wrongLogin}</p>
         <input type="submit" name="logButton"  value="Login ">       
         <br><br>    
         

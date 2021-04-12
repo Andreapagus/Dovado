@@ -10,6 +10,7 @@ import java.time.LocalTime;
 import logic.model.Activity;
 import logic.model.Cadence;
 import logic.model.CertifiedActivity;
+import logic.model.DAOSuperUser;
 import logic.model.DateBean;
 import logic.model.Partner;
 import logic.model.Place;
@@ -38,10 +39,17 @@ public class Main {
 		System.out.println("Creo utente e attività normale:\n");
 		
 		/* 				User u = new User("sessione1"); 					*/
-		
+		DAOSuperUser  dao = DAOSuperUser.getInstance();
 		CreateUserController createUser= new CreateUserController();
-		User u = createUser.createUser("sessione1");
+		int control =  createUser.createUser("sessione1@drew.com","sessione1","sessione1");
+		if (control != 1) {
+			System.out.println("Errore nella creazione dell'utente");
+			return;
+		}
+		User u = (User)  dao.findSuperUser("sessione1@drew.com","sessione1");
 		
+		if (u == null ) {
+			System.out.println("USER NULL");}
 		// creo posto per esempio ma va rivisto assolutamente 
 		PlaceBean placeBean = PlaceBean.getInstance();
 		
@@ -165,8 +173,18 @@ public class Main {
 		
 		/*									Partner partner = new Partner("Sessione2");											*/
 		
-		Partner partner = createUser.createPartner("Sessione2");
+		control = createUser.createPartner("Sessione2@drew.com","Sessione2","Sessione2");
+		if (control != 1) {
+			System.out.println("Errore nella creazione dell'utente");
+			return;
+		}
 		
+		Partner partner = (Partner) dao.findSuperUserByID(Long.valueOf(2));
+		
+		//Partner partner = (Partner) dao.findSuperUser("Sessione2@drew.com","Sessione2");
+		if (partner == null) {
+			System.out.println("PARTNER NULLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+		}
 		CreateActivityController c2 = new CreateActivityController(partner, erFaciolo2);
 		c2.createActivity("ciao2",p);
 		c2 = new CreateActivityController(partner, erFaciolo3);

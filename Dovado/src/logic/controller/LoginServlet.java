@@ -7,16 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.simple.*;
+
+import logic.model.DAOSuperUser;
+
 import javax.servlet.http.HttpSession;
 
-import logic.controller.DAOSuperUser;
 
 /**
  * Servlet implementation class LoginServlet
  */
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-	String Username;
+	String Email;
 	String Password;
 	DAOSuperUser dao;
 	
@@ -46,13 +48,13 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         dao = DAOSuperUser.getInstance();
 
-		Username = request.getParameter("Uname");
+		Email = request.getParameter("Uemail");
 		Password = request.getParameter("Password");
-		System.out.println(Username + Password);
+		System.out.println(Email + Password);
 		
 		
 		//response.sendRedirect("login.jsp");
-		if (dao.findSuperUser(Username) != null) {
+		if (dao.findSuperUser(Email,Password) != null) {
 			System.out.println("L'utente esiste");
 
 			//Controllo se esiste già una sessione attiva
@@ -64,15 +66,15 @@ public class LoginServlet extends HttpServlet {
 			HttpSession currentSession = request.getSession();
 			//setto attributi utili e il timer di sessione
 			
-			currentSession.setAttribute("User", Username);
-			currentSession.setMaxInactiveInterval(300);
+			currentSession.setAttribute("User", Email);
+			currentSession.setMaxInactiveInterval(15);
 			
-			response.sendRedirect("map.html");
+			response.sendRedirect("test.jsp");
 		}
 		else {
-			System.out.println("Non esiste l'uteente");
-			response.sendRedirect("login.jsp");
-
+			System.out.println("Non esiste l'utente");
+			request.setAttribute("wrongLogin","Email o password errati");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 	}
 
