@@ -2,7 +2,7 @@ package logic.model;
 import java.util.ArrayList;
 
 public class Place {
-	private int id;
+	private Long id;
 	private String civico;
 	private String city;
 	private String region;
@@ -34,15 +34,15 @@ public class Place {
 		this.owner = o;
 	};
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(long l) {
+		this.id = l;
 	};
 	
 	public void addActivity(Long id) {
 		this.hostedActivities.add(id);
 	}
 
-	public int getId() {
+	public Long getId() {
 		return this.id;
 	};
 

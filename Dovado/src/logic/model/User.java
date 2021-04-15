@@ -36,20 +36,24 @@ public class User extends SuperUser{
 	
 	private Schedule schedule;
 	private int wallet;
+	private String name;
 	
-	public User(String username, Long id) {
-		super(username, id);
-		wallet = 0;
-		schedule = new Schedule();
+	public User(String username, String email, Long id) {
+		super(username,email, id);
+		this.wallet = 0;
+		this.schedule = new Schedule();
 	}
 	
 	public int getBalance() {
-		return wallet;
+		return this.wallet;
 	}
 	
+	public String getName() {
+		return this.name;
+	}
 	
 	public void getReward(int reward) {
-		wallet+=reward;
+		this.wallet+=reward;
 	};
 	
 	public Schedule getSchedule() {

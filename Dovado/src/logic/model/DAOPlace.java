@@ -11,6 +11,7 @@ import org.json.simple.parser.JSONParser;
 public class DAOPlace {
 	
 	private static DAOPlace INSTANCE;
+	private DAOSuperUser daoSu;
 	
 	private DAOPlace() {
 	}
@@ -24,6 +25,7 @@ public class DAOPlace {
 	public Place findPlaceInJSON(String name, String city, String region) {
 		JSONParser parser = new JSONParser();
 		int i,id;
+		daoSu = DAOSuperUser.getInstance();
 		try 
 		{
 			Object places = parser.parse(new FileReader("WebContent/places.json"));
@@ -40,8 +42,8 @@ public class DAOPlace {
 				String regionPrint = (String) result.get("region");
 				
 				if (name.equals(namePrint) && city.equals(cityPrint) && region.equals(regionPrint)) {
-					Place placeFound = new Place(namePrint,(String) result.get("address"),cityPrint,regionPrint,(String) result.get("civico"),(Partner) result.get("owner"));
-					placeFound.setId(i);
+					Place placeFound = new Place(namePrint,(String) result.get("address"),cityPrint,regionPrint,(String) result.get("civico"),(Partner) daoSu.findSuperUserByID((Long)result.get("owner")));
+					placeFound.setId(Integer.toUnsignedLong(i));
 					return placeFound;
 				}
 				
@@ -72,7 +74,7 @@ public class DAOPlace {
 		newPlace.put("region", region);
 		newPlace.put("activities", newPlaceActivities);
 		if(owner!=null)
-			newPlace.put("owner", owner.getName());
+			newPlace.put("owner", owner.getUserID());
 		else 
 			newPlace.put("owner", null); 
 		
@@ -132,17 +134,17 @@ public class DAOPlace {
 			{
 				result = (JSONObject)placeArray.get(i);
 
-				Integer placeId = ((Long) result.get("id")).intValue();
+				Long placeId = ((Long) result.get("id"));
 				
 				/*--------------------PRINT DI CONTROLLO-----------------------------------------------*/
 				System.out.println("Controllo di comparazione ID posti:");
 				System.out.println(p.getId()==(placeId));
-				System.out.println(p.getOwner().getUsername());
+				System.out.println(p.getOwner().getUserID());
 				/*--------------------PRINT DI CONTROLLO-----------------------------------------------*/				
 				
 				if(p.getId()==(placeId)) {
 					//Salvo nella persistenza il proprietario con il suo nome. In futuro lo si potrebbe salvare in base all'id.
-					result.put("owner", p.getOwner().getUsername());
+					result.put("owner", p.getOwner().getUserID());
 					placeArray.set(i, result);
 					break;
 				}

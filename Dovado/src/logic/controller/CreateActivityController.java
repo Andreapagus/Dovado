@@ -32,7 +32,7 @@ public class CreateActivityController {
 	
 	public void createActivity(String n, Place p) {
 		//spaghetti code here!!!
-		int id;
+		Long id;
 		daoAc = DAOActivity.getInstance();
 		SuperActivity newActivity;
 		switch(bean.getType()) {
