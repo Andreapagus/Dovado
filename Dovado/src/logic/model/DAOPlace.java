@@ -21,10 +21,47 @@ public class DAOPlace {
 			INSTANCE = new DAOPlace();
 		return INSTANCE;
 	}
+
+	//Aggiunto un metodo per trovare un posto tramite ID, utile durante la reistanzazione da persistenza delle attività.
+	public Place findPlaceById(Long id) {
+		JSONParser parser = new JSONParser();
+		int i;
+		daoSu = DAOSuperUser.getInstance();
+		try 
+		{
+			Object places = parser.parse(new FileReader("WebContent/places.json"));
+			JSONObject place = (JSONObject) places;
+			JSONArray placeArray = (JSONArray) place.get("places");
+			JSONObject result;
+
+			for(i=0;i<placeArray.size();i++) 
+			{
+				result = (JSONObject)placeArray.get(i);
+				
+				Long idJSON = (Long) result.get("id");
+				
+				if (idJSON.equals(id)) {
+					Place placeFound = new Place((String)result.get("name"),(String) result.get("address"),(String)result.get("city"),(String)result.get("region"),(String) result.get("civico"),(Partner) daoSu.findSuperUserByID((Long)result.get("owner")));
+					placeFound.setId((Long) result.get("id"));
+					return placeFound;
+				}
+				
+			}
+			
+		} 
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+			}
+		return null;
+	}
 	
 	public Place findPlaceInJSON(String name, String city, String region) {
 		JSONParser parser = new JSONParser();
-		int i,id;
+		int i;
 		daoSu = DAOSuperUser.getInstance();
 		try 
 		{
@@ -43,7 +80,7 @@ public class DAOPlace {
 				
 				if (name.equals(namePrint) && city.equals(cityPrint) && region.equals(regionPrint)) {
 					Place placeFound = new Place(namePrint,(String) result.get("address"),cityPrint,regionPrint,(String) result.get("civico"),(Partner) daoSu.findSuperUserByID((Long)result.get("owner")));
-					placeFound.setId(Integer.toUnsignedLong(i));
+					placeFound.setId((Long) result.get("id"));
 					return placeFound;
 				}
 				
@@ -162,5 +199,6 @@ public class DAOPlace {
 			}
 		return true;
 	}
+
 	
 }

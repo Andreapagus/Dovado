@@ -15,14 +15,14 @@ public abstract class SuperActivity {
 	private Place place;
 	private FrequencyOfRepeat frequencyOfRepeat;
 	private Channel channel;
-	private ArrayList<Long> preferences;
+	private ArrayList<String> preferences;
 	
 	public SuperActivity(String nome, SuperUser user, Place place) {
 		//chiamare questo metodo quando si vuole creare una attività continua!
 		this.name= nome;
 		this.creator = user;
 		this.place = place;
-		this.preferences = new ArrayList<Long>();
+		this.preferences = new ArrayList<String>();
 		this.frequencyOfRepeat = new ContinuosActivity(null,null);
 		this.channel = new Channel();
 	}
@@ -90,11 +90,11 @@ public abstract class SuperActivity {
 		else return false;
 	}
 
-	public ArrayList<Long> getPreferences() {
+	public ArrayList<String> getPreferences() {
 		return this.preferences;
 	}
 	
-	public void setPreferences(ArrayList<Long> newPreferences) {
+	public void setPreferences(ArrayList<String> newPreferences) {
 		this.preferences = newPreferences;
 	}
 }

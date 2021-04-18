@@ -6,6 +6,7 @@ package logic.controller;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 import logic.model.Activity;
 import logic.model.Cadence;
@@ -256,7 +257,7 @@ public class Main {
 		
 		try {
 		//----------------------------------------------------------------
-		System.out.println("controllo che attività  1 fattibile tutti i giorni dalle 9:30 alle 18 sia fattibile oggi alle 19:17 ...");
+		System.out.println("controllo che attività  1 fattibile tutti i giorni dalle 9:30 alle 18 sia fattibile oggi alle 19:17 ...\nId del posto: "+p.getId());
 		if(cf.findActivityByID(p,0).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,12), LocalTime.of(19, 17)))) System.out.println("Ã¨ fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
@@ -351,49 +352,117 @@ public class Main {
 			System.out.println("Operazione effettuata con successo!");
 		else System.out.println("Operazione di aggiunta proprietario dell'attività fallita!");
 		
-		System.out.println("\n-------------------------------------------Eliminazione di Attività dalla persistenza------------------------------------------------\n");	
+		System.out.println("\n-------------------------------------------Eliminazione di attività dalla persistenza------------------------------------------------\n");	
+		
 		ManageActivityController mac = new ManageActivityController();
 		SuperActivity sua = cf.findActivityByID(p, 4),modifiedsua;
 		System.out.println("Nome attività precedente alla modifica: "+sua.getName()+" L'id "+sua.getId()+" anche il creatore per vedere una cosa: "+sua.getCreator().getUserID());
 		modifiedsua = mac.setActivityName(sua,"NomeDeProva");
 		System.out.println("Nome attività a seguito della modifica: "+modifiedsua.getName());
 		
-		System.out.println("\n-------------------------------------------Eliminazione di Attività dalla persistenza------------------------------------------------\n");	
-		if(mac.deleteActivity(cf.findActivityByID(p, 6)))
+		System.out.println("\n-------------------------------------------Eliminazione di attività dalla persistenza------------------------------------------------\n");	
+		CreateActivityBean erFaciolo6 = new CreateActivityBean();
+		
+		erFaciolo6.setType(ActivityType.scadenza);
+			
+		erFaciolo6.setStartDay(19);
+		erFaciolo6.setEndDay(19);
+				
+		erFaciolo6.setStartMonth(1);
+		erFaciolo6.setEndMonth(1);
+				
+		erFaciolo6.setStartYear(2021);
+		erFaciolo6.setEndYear(2021);
+				
+		erFaciolo6.setStartHour(9);
+		erFaciolo6.setStartMinutes(30);
+				
+		erFaciolo6.setEndHour(18);
+		erFaciolo6.setEndMinutes(0);
+		
+		c2 = new CreateActivityController(partner, erFaciolo6);
+		c2.createActivity("anvedime",p);
+		
+		System.out.println(cf.findActivityByID(p, 6)!=null);	
+		
+		
+		/*if(mac.deleteActivity(cf.findActivityByID(p, 6)))
 			System.out.println("Eliminazione effettuata con successo.");	
 		else System.out.println("Eliminazione NON AVVENUTA.");	
-
-		System.out.println("\n-------------------------------------------Cambiamento frequenza di Attività nella persistenza e fuori--------------------------------\n");	
+		*/
+		System.out.println("\n-------------------------------------------Cambiamento frequenza di attività nella persistenza e fuori--------------------------------\n");	
 		
 		//PER TESTARE UN METODO DI INTERESSE BASTA COMMENTARE GLI ALTRI DUE.
 		
-		System.out.println("\n-------------------------------------------Cambiamento ad Attività CONTINUOS----------------------------------------------------------\n");	
+		System.out.println("\n-------------------------------------------Cambiamento ad attività CONTINUOS----------------------------------------------------------\n");	
 		if((modifiedsua = mac.setFrequency(sua, LocalTime.of(0,0), LocalTime.of(23,30), LocalDate.of(2039, 1, 18), LocalDate.of(2042, 1, 18)))!=null)
 			System.out.println("Frequenza settata a CONTINUOS con successo.");	
 		else System.out.println("Frequenza NON SETTATA CORRETTAMENTE.");	
 		
-		System.out.println("\n-------------------------------------------Cambiamento ad Attività EXPIRING-----------------------------------------------------------\n");
+		System.out.println("\n-------------------------------------------Cambiamento ad attività EXPIRING-----------------------------------------------------------\n");
 		if((modifiedsua = mac.setFrequency(sua, LocalTime.of(0,0), LocalTime.of(23,30)))!=null)
 			System.out.println("Frequenza settata a EXPIRING con successo.");	
 		else System.out.println("Frequenza NON SETTATA CORRETTAMENTE.");	
 		
-		System.out.println("\n-------------------------------------------Cambiamento ad Attività PERIODIC----------------------------------------------------------\n");
+		System.out.println("\n-------------------------------------------Cambiamento ad attività PERIODIC----------------------------------------------------------\n");
 		if((modifiedsua = mac.setFrequency(sua, LocalTime.of(0,0), LocalTime.of(23,30), LocalDate.of(2039, 1, 18), LocalDate.of(2042, 1, 18),Cadence.ANNUALLY))!=null)
 			System.out.println("Frequenza settata a PERIODIC con successo.");	
 		else System.out.println("Frequenza NON SETTATA CORRETTAMENTE.");		
 			
-		System.out.println("\n-------------------------------------------Cambiamento preferenza di Attività nell'UTENTE--------------------------------\n");	
+		System.out.println("\n-------------------------------------------Cambiamento preferenza di attività nelgli UTENTI--------------------------------\n");	
 		
 		SetPreferencesController spc = new SetPreferencesController();
 		if(spc.updatePreferencesUser(u, "tennis"))
 			System.out.println("Cambiamento 1 avvenuto con SUCCESSO");	
 		else System.out.println("Cambiamento 1 FALLITO");	
+
+		User u2 = (User) dao.findSuperUser("drew@drew.com");
+		if (spc.updatePreferencesUser(u2, "Calcio"))
+			System.out.println("Aggiunto 'Calcio' con SUCCESSO all'utente "+u2.getUsername());	
+		else System.out.println("Aggiunta di 'Calcio' FALLITA "+u2.getUsername());	
 		
-		System.out.println("\n-------------------------------------------Cambiamento preferenza di Attività nell'ATTIVITA'--------------------------------\n");	
+		if (spc.updatePreferencesUser(u2, "Boxe"))
+			System.out.println("Aggiunto 'Boxe' con SUCCESSO all'utente "+u2.getUsername());	
+		else System.out.println("Aggiunta di 'Boxe' FALLITA "+u2.getUsername());	
+		
+		System.out.println("\n-------------------------------------------Cambiamento preferenza di attività nelle 'ATTIVITA''--------------------------------\n");	
 		if(spc.updatePreferencesActivity(modifiedsua, "CALCio") && spc.updatePreferencesActivity(modifiedsua, "tennIS"))
-			System.out.println("Cambiamento 2 avvenuto con SUCCESSO");	
-		else System.out.println("Cambiamento 2 FALLITO");	
+			System.out.println("Cambiamento nell'attività "+modifiedsua.getName()+" avvenuto con SUCCESSO");	
+		else System.out.println(modifiedsua.getName()+" non è stata modificata.");	
 		
+		modifiedsua = cf.findActivityByID(p, 1);
+		if(spc.updatePreferencesActivity(modifiedsua, "CALCio") && spc.updatePreferencesActivity(modifiedsua, "tennIS"))
+			System.out.println("Cambiamento nell'attività "+modifiedsua.getName()+" avvenuto con SUCCESSO");	
+		else System.out.println(modifiedsua.getName()+" non è stata modificata.");	
+		
+		modifiedsua = cf.findActivityByID(p, 3);
+		if(spc.updatePreferencesActivity(modifiedsua, "Boxe") && spc.updatePreferencesActivity(modifiedsua, "tennIS"))
+			System.out.println("Cambiamento nell'attività "+modifiedsua.getName()+" avvenuto con SUCCESSO");	
+		else System.out.println(modifiedsua.getName()+" non è stata modificata.");	
+		
+		modifiedsua = cf.findActivityByID(p, 5);
+		if(spc.updatePreferencesActivity(modifiedsua, "Boxe") && spc.updatePreferencesActivity(modifiedsua, "calcio"))
+			System.out.println("Cambiamento nell'attività "+modifiedsua.getName()+" avvenuto con SUCCESSO");	
+		else System.out.println(modifiedsua.getName()+" non è stata modificata.");
+		
+		System.out.println("\n-------------------------------------------Ricerca di attività IN BASE ALLA PREFERENZA--------------------------------\n");
+		System.out.println("\n-------------------------------------------------Ricerca della preferenza TENNIS--------------------------------------\n");	
+		ArrayList<SuperActivity> resultingActivities = cf.findActivityByPreference("tennis");
+		if(resultingActivities==(null)) System.out.println("Non è stato trovato niente.\n");
+		else System.out.println("Qualcosa è stato trovato. Con numero di elementi : "+resultingActivities.size());
+		System.out.println("\n------------------------------------------------------Risultato ottenuto----------------------------------------------\n");
+		SuperActivity result;
+		int i,j;
+		for(i=0;i<resultingActivities.size();i++) {
+			result = resultingActivities.get(i);
+			System.out.println("\nID: "+result.getId()+"\nNome attività: "+result.getName()+"\nID creatore: "+result.getCreator().getUserID()+"\nFrequenza: "+result.getFrequency()+"\nID posto: "+result.getPlace()+"\nPreferenze del posto:");
+			for(j=0;j<result.getPreferences().size();j++) {
+				System.out.println("\n"+result.getPreferences().get(j));
+			}
+		}
+		
+			
+			
 	}
 
 }

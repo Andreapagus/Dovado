@@ -6,13 +6,13 @@ public abstract class SuperUser {
 	private String username;
 	private Long uID;
 	private String email;
-	private ArrayList<Long> preferences;
+	private ArrayList<String> preferences;
 	
 	public SuperUser(String usr,String email,Long id) {
 		this.username = usr;
 		this.email = email;
 		this.uID = id;
-		this.preferences = new ArrayList<Long>();
+		this.preferences = new ArrayList<String>();
 	}
 	
 	public String getEmail() {
@@ -32,11 +32,11 @@ public abstract class SuperUser {
 	* di SuperUser, e setPreferences, che invece stabilisce le nuove 
 	* preferenze del SuperUser in questione.
 	*/
-	public ArrayList<Long> getPreferences() {
+	public ArrayList<String> getPreferences() {
 		return this.preferences;
 	}
 	
-	public void setPreferences(ArrayList<Long> newPreferences) {
+	public void setPreferences(ArrayList<String> newPreferences) {
 		this.preferences = newPreferences;
 	}
 	

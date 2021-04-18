@@ -76,7 +76,7 @@ public class DAOSuperUser {
 	//Creiamo un metodo per la modifica delle preferenze sul tipo di attività collegate ad un utente.
 	public boolean updateUserPreferences(SuperUser su) {
 		JSONParser parser = new JSONParser();
-		ArrayList<Long> oldpref = new ArrayList<Long>();
+		ArrayList<String> oldpref = new ArrayList<String>();
 		int i,j;
 		
 		try {
@@ -102,7 +102,7 @@ public class DAOSuperUser {
 					//che si andrà ad inserire; Se sono uguali si esce restituendo falso.
 					//Se vero si procede nel salvataggio.
 					for(j=0;j<oldpreferences.size();j++) {
-						oldpref.add((Long)oldpreferences.get(j));
+						oldpref.add((String)oldpreferences.get(j));
 					}
 					
 					if(!su.getPreferences().equals(oldpref)) {
@@ -158,11 +158,11 @@ public class DAOSuperUser {
 						//Il return viene modificato in modo da tener conto della ISTANZIAZIONE ANCHE DELLE PREFERENZE dell'utente.
 						if((Long)result.get("partner")==1) {
 							Partner partner = new Partner((String) result.get("username"),(String) result.get("email"),(Long) result.get("id"));
-							partner.setPreferences(((ArrayList<Long>)result.get("preferences")));
+							partner.setPreferences(((ArrayList<String>)result.get("preferences")));
 							return partner;
 						}
 						User user = new User((String) result.get("username"),(String) result.get("email"),(Long) result.get("id"));
-						user.setPreferences(((ArrayList<Long>)result.get("preferences")));
+						user.setPreferences(((ArrayList<String>)result.get("preferences")));
 						return user;
 					}
 				} catch(NullPointerException e) {
@@ -218,11 +218,11 @@ public class DAOSuperUser {
 						//Il return viene modificato in modo da tener conto della ISTANZIAZIONE ANCHE DELLE PREFERENZE dell'utente.
 						if((Long)result.get("partner")==1) {
 							Partner partner = new Partner((String) result.get("username"),(String) result.get("email"),(Long) result.get("id"));
-							partner.setPreferences(((ArrayList<Long>)result.get("preferences")));
+							partner.setPreferences(((ArrayList<String>)result.get("preferences")));
 							return partner;
 						}
 						User user = new User((String) result.get("username"),(String) result.get("email"),(Long) result.get("id"));
-						user.setPreferences(((ArrayList<Long>)result.get("preferences")));
+						user.setPreferences(((ArrayList<String>)result.get("preferences")));
 						return user;					
 					}
 				} catch(NullPointerException e) {
@@ -274,11 +274,11 @@ public class DAOSuperUser {
 						//Il return viene modificato in modo da tener conto della ISTANZIAZIONE ANCHE DELLE PREFERENZE dell'utente.
 						if((Long)result.get("partner")==1) {
 							Partner partner = new Partner((String) result.get("username"),(String) result.get("email"),(Long) result.get("id"));
-							partner.setPreferences(((ArrayList<Long>)result.get("preferences")));
+							partner.setPreferences(((ArrayList<String>)result.get("preferences")));
 							return partner;
 						}
 						User user = new User((String) result.get("username"),(String) result.get("email"),(Long) result.get("id"));
-						user.setPreferences(((ArrayList<Long>)result.get("preferences")));
+						user.setPreferences(((ArrayList<String>)result.get("preferences")));
 						return user;
 					}
 				} catch(NullPointerException e) {

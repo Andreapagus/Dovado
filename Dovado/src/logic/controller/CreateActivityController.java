@@ -35,6 +35,8 @@ public class CreateActivityController {
 		Long id;
 		daoAc = DAOActivity.getInstance();
 		SuperActivity newActivity;
+
+		System.out.println("Ciao da dentro createActivity");
 		switch(bean.getType()) {
 		case continua:
 			{	
@@ -44,13 +46,22 @@ public class CreateActivityController {
 					//se l'utente è normale l'attività non è certificata, mentre se lo è avremo un'attività certificata.
 					//è importante nella ricostruzione delle attività ricavate dalla persistenza.
 					
-					newActivity=Factory.createNormalActivity(n, u, p, bean.getOpeningTime(), bean.getClosingTime());
+					newActivity=Factory.createNormalActivity(n, u, p, bean.getOpeningTime(), bean.getClosingTime());					
 					id = daoAc.addActivityToJSON(p,newActivity,"no");
+					if(id<0) {
+						System.out.println("Attività non creata.\n");
+						return;
+					} else System.out.println("ID:\n"+id+"\n");
+					
 					newActivity.setId(id);
 				}
 				else {
 					newActivity=Factory.createCertifiedActivity(n, u, p, bean.getOpeningTime(), bean.getClosingTime() );
 					id = daoAc.addActivityToJSON(p,newActivity,"yes");	
+					if(id<0) {
+						System.out.println("Attività non creata.\n");
+						return;
+					}else System.out.println("ID:\n"+id+"\n");
 					newActivity.setId(id);
 				}
 			
@@ -64,11 +75,19 @@ public class CreateActivityController {
 					//è importante nella ricostruzione delle attività ricavate dalla persistenza.
 					newActivity=Factory.createNormalActivity(n, u, p, bean.getOpeningTime(), bean.getClosingTime(), bean.getStartDate(), bean.getEndDate(), bean.getCadence());
 					id = daoAc.addActivityToJSON(p,newActivity,"no");
+					if(id<0) {
+						System.out.println("Attività non creata.\n");
+						return;
+					}else System.out.println("ID:\n"+id+"\n");
 					newActivity.setId(id);
 				}
 				else {
 					newActivity=Factory.createCertifiedActivity(n, u, p, bean.getOpeningTime(), bean.getClosingTime(), bean.getStartDate(), bean.getEndDate(), bean.getCadence());
 					id = daoAc.addActivityToJSON(p,newActivity,"yes");		
+					if(id<0) {
+						System.out.println("Attività non creata.\n");
+						return;
+					}else System.out.println("ID:\n"+id+"\n");
 					newActivity.setId(id);
 				}
 			}
@@ -81,11 +100,19 @@ public class CreateActivityController {
 					//è importante nella ricostruzione delle attività ricavate dalla persistenza.
 					newActivity=Factory.createNormalActivity(n, u, p, bean.getOpeningTime(), bean.getClosingTime(), bean.getStartDate(), bean.getEndDate());
 					id = daoAc.addActivityToJSON(p,newActivity,"no");
+					if(id<0) {
+						System.out.println("Attività non creata.\n");
+						return;
+					}else System.out.println("ID:\n"+id+"\n");
 					newActivity.setId(id);
 				}
 				else { 
 					newActivity=Factory.createCertifiedActivity(n, u, p, bean.getOpeningTime(), bean.getClosingTime(), bean.getStartDate(), bean.getEndDate());
 					id = daoAc.addActivityToJSON(p,newActivity,"yes");	
+					if(id<0) {
+						System.out.println("Attività non creata.\n");
+						return;
+					}else System.out.println("ID:\n"+id+"\n");
 					newActivity.setId(id);				
 				}
 			}

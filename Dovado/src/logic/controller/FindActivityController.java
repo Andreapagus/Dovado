@@ -23,14 +23,25 @@ public class FindActivityController {
 	DAOSuperUser daoSU;
 	DAOActivity daoAc;
 	
+	public ArrayList<SuperActivity> findActivityByPreference(String preference) {
+		ArrayList<SuperActivity> result;
+		daoAc = DAOActivity.getInstance();
+		daoSU = DAOSuperUser.getInstance();
+		if((result = daoAc.findActivityByPreference(daoSU, preference))!=null)
+			return result;
+		System.out.println("Non è stata trovata alcuna attività con la preferenza specificata.");
+		return null;
+	}
 	//Il metodo prende in ingresso un posto e un intero che rappresenta l'id dell'attività che si vuole
 	//trovare.
 	public SuperActivity findActivityByID (Place p, int n) {
+		daoSU = DAOSuperUser.getInstance();
 		daoAc = DAOActivity.getInstance();
 		return daoAc.findActivityByID(daoSU, p, n);
 	}
 	
 	public boolean isInJSON(Place p, String activityName, Long creatorId) {
+		daoSU = DAOSuperUser.getInstance();
 		daoAc = DAOActivity.getInstance();
 		return daoAc.isInJSON(daoSU, p, activityName, creatorId);
 	}
