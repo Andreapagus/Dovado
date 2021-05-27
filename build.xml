@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="Dovado">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../eclipse/java-2020-12/eclipse/"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="11"/>
+    <property name="source" value="11"/>
+    <path id="Maven Dependencies.libraryclasspath">
+        <pathelement location="../../.m2/repository/com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar"/>
+        <pathelement location="../../.m2/repository/junit/junit/4.10/junit-4.10.jar"/>
+        <pathelement location="../../.m2/repository/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar"/>
+    </path>
+    <path id="Web App Libraries.libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/json-simple-1.1.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar"/>
+    </path>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="Apache Tomcat v8.0 [Apache Tomcat v8.0].libraryclasspath">
+        <pathelement location="../../Downloads/tomcat 8.0/lib/annotations-api.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/catalina-ant.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/catalina-ha.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/catalina-storeconfig.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/catalina-tribes.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/catalina.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/ecj-4.5.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/el-api.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/jasper-el.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/jasper.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/jsp-api.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/servlet-api.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/tomcat-api.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/tomcat-dbcp.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/tomcat-jdbc.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/tomcat-jni.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/tomcat-util-scan.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/tomcat-util.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/tomcat-websocket.jar"/>
+        <pathelement location="../../Downloads/tomcat 8.0/lib/websocket-api.jar"/>
+    </path>
+    <path id="Dovado.classpath">
+        <pathelement location="target/classes"/>
+        <pathelement location="target/test-classes"/>
+        <pathelement location="../../eclipse-workspace/Dovado/json-simple-1.1.1.jar"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.base.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.controls.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.fxml.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.graphics.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.media.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.swing.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.web.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx-swt.jar"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="Apache Tomcat v8.0 [Apache Tomcat v8.0].libraryclasspath"/>
+        <pathelement location="WebContent/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar"/>
+    </path>
+    <path id="run.CouponVector.classpath">
+        <path refid="Dovado.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+        <pathelement location="../../eclipse-workspace/Dovado/json-simple-1.1.1.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.base.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.controls.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.fxml.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.graphics.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.media.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.swing.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.web.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx-swt.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar"/>
+    </path>
+    <path id="run.Main.classpath">
+        <path refid="Dovado.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+        <pathelement location="../../eclipse-workspace/Dovado/json-simple-1.1.1.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.base.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.controls.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.fxml.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.graphics.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.media.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.swing.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx.web.jar"/>
+        <pathelement location="../../../../Program Files/Java/javaFx/javafx-sdk-15.0.1/lib/javafx-swt.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="target/classes"/>
+        <mkdir dir="target/test-classes"/>
+        <copy includeemptydirs="false" todir="target/classes">
+            <fileset dir="Dovado/src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.xtend"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="target/test-classes">
+            <fileset dir="src/test/java">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.xtend"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="target/classes"/>
+        <delete dir="target/test-classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="target/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="Dovado/src"/>
+            <classpath refid="Dovado.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="target/test-classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src/test/java"/>
+            <classpath refid="Dovado.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="CouponVector">
+        <java classname="logic.model.CouponVector" failonerror="true" fork="yes">
+            <classpath refid="run.CouponVector.classpath"/>
+        </java>
+    </target>
+    <target name="Main">
+        <java classname="logic.controller.Main" failonerror="true" fork="yes">
+            <classpath refid="run.Main.classpath"/>
+        </java>
+    </target>
+</project>
