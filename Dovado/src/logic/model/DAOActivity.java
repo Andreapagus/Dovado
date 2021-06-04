@@ -362,7 +362,7 @@ public class DAOActivity {
 				System.out.println("Non ci sono attività da dover cercare!\n");
 				return null;
 			}
-			
+			//commento da cancellare
 			//Si inizia a scandire l'array di attività in cerca di quella che contenga almeno una preferenza che combaci con quella cercata.
 			for(i=0;i<activityArray.size();i++){
 				
