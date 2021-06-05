@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane;
  */
 public class Navbar {
 	private static BorderPane navbar = null;
+
 	
 	public static BorderPane getNavbar() {
 		if(Navbar.navbar == null) 
@@ -61,14 +62,19 @@ public class Navbar {
 		navbar.lookup("#home").getStyleClass().add("active");
 	}
 	
-	public void onChallenges() {
+	public void onChannels() {
 		this.changePage();
-		navbar.lookup("#challenges").getStyleClass().add("active");
+		navbar.lookup("#channels").getStyleClass().add("active");
 	}
 	
-	public void onVote() {
+	public void onEvents() {
 		this.changePage();
-		navbar.lookup("#vote").getStyleClass().add("active");
+		navbar.lookup("#events").getStyleClass().add("active");
+	}
+	
+	public void onPreferences() {
+		this.changePage();
+		navbar.lookup("#myProfile").getStyleClass().add("active");
 	}
 	
 	public void onMyProfile() {

@@ -41,7 +41,8 @@ public class LoginView{
     void login(ActionEvent event) {
     	System.out.println("Clicked login");
     	Stage current = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	HomeView.render(current);
+    	HomeView hv = new HomeView();
+    	hv.render(current);
     }
 
     @FXML
@@ -58,7 +59,7 @@ public class LoginView{
 			BorderPane navbar = Navbar.getNavbar();
 			Scene scene = new Scene(root,Navbar.getWidth(),Navbar.getHeight());
 			scene.getStylesheets().add(Main.class.getResource("Dovado.css").toExternalForm());
-			primaryStage.setTitle("GoodHabits - login");
+			primaryStage.setTitle("Dovado - login");
 			primaryStage.setScene(scene);
 			GridPane login = new GridPane();
 			try {

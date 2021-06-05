@@ -27,12 +27,18 @@
 
 /* navbar styling
 ***********************************************/
+.navbar-item-text{
+  -fx-text-fill: #ffffff;
+  -fx-background-color: none;
+}
+
 .navbar-item{
+  -fx-text-fill: #ffffff;
   -fx-background-color: none;
 }
 
 .navbar-item:hover {
-  -fx-background-color: #77ac39;
+  -fx-background-color: #212121;
 }
 
 .navbar-item:pressed {
@@ -42,15 +48,16 @@
 
 .navbar {
   -fx-font-family: 'Montserrat';
-  -fx-background-color: #8bc34a;
+  -fx-background-color: #BC9416;
 }
 
 .context-menu {
     /*-fx-skin: "com.sun.javafx.scene.control.skin.ContextMenuSkin";*/
-    -fx-background-color: #8bc34a;
+    -fx-background-color: #484848;
     /*-fx-background-insets: 0, 1, 2;*/
     -fx-background-radius: 0 6 6 6, 0 5 5 5, 0 4 4 4;
     -fx-padding: 0.333333em 0.083333em 0.666667em 0.083333em; /* 4 1 8 1 */
+    
 }
 
 .logout .label {
@@ -60,7 +67,7 @@
 /* buttons
 ***************************************************/
 .btn {
-  -fx-background-color: #8bc34a;
+  -fx-background-color: #BC9416;
   -fx-background-radius: 999;
   -fx-padding: 10 14 10 14;
   -fx-font-family: 'Montserrat';
@@ -69,7 +76,7 @@
 }
 
 .btn:hover {
-  -fx-background-color: #77ac39;
+  -fx-background-color: #251d04;
 }
 
 .btn:pressed{
@@ -78,18 +85,20 @@
 }
 
 /* listview
- **************************************************/
- 
+ */
  .list-cell{
- 	/*-fx-text-fill: white;*/
- 	-fx-font-size: 16;
+ 	-fx-text-fill: white;
+ 	-fx-font-size: 20;
  	-fx-padding: 10;
- 	
- 	/*-fx-background-image: url(https://source.unsplash.com/random);
- 	-fx-background-position: center center;*/
+ 	 
+ }
+ 
+ .list-cell:hover{
+ 	-fx-font-weight: bold;
+ 	-fx-background-color:  #212121;
  }
  
  .list-cell:selected{
  	-fx-font-weight: bold;
- 	-fx-background-color:  #8bc34a;
+ 	-fx-background-color:  #212121;
  }

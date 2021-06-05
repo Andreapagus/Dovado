@@ -22,7 +22,41 @@ public class DAOPreferences {
 		return INSTANCE;
 	}
 	
-	public boolean findPreferenceInJSON(String preferenceName){
+	public String getPreferenceFromJSON(int placeInJSON) {
+		String preference;
+		JSONParser parser = new JSONParser();
+		int i;
+		try 
+		{
+			Object preferences = parser.parse(new FileReader("WebContent/preferences.json"));
+			JSONObject preferenceOBJ = (JSONObject) preferences;
+			JSONArray prefArray = (JSONArray) preferenceOBJ.get("preferences");
+			JSONObject result;
+			
+			result = (JSONObject)prefArray.get(placeInJSON);
+				
+			preference = ((String) result.get("name"));
+			
+			return preference;
+			
+			//Se uscito dal ciclo for la preferenza non era presente nella persistenza;
+			//Per un possibile uso futuro quindi la si aggiunge; restituendo il suo id.
+			
+			// POTREMMO VOLERLO CAMBIARE ( SE NON VOGLIAMO IL JSON INTASATO DI SINONIMI DI UNO STESSO
+			// INSERITO DIVERSE VOLTE DA PARTE DI UTENTI ) TOGLIENDO L'AGGIUNTA IN AUTOMATICO DELLA PREFERENZA.
+			
+		} 
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public boolean preferenceIsInJSON(String preferenceName){
 		JSONParser parser = new JSONParser();
 		int i;
 		try 

@@ -21,12 +21,11 @@
 		</style>
 	</head>
 <body>
-	<h1>Mappa e geolocalizzazione.</h1>
 	<div id="Map"></div>
 	<script src="js/map.js">
 	</script>
 
-
+	<input type="button" onclick="spotPlace('65','Via nicola salvi','Roma','lazio')">
 </body>
 
 	<script>
@@ -74,13 +73,37 @@
 		const response = await fetch('places.json');
 		const result = await response.json();
 		for (place in result.places){
-			console.log("latitudine place =",result.places[i].latitude,"longitudine place =",result.places[i].longitude);
-			if(result.places[i].latitude!=null && result.places[i].longitude!=null){
-				addMarker(result.places[i].latitude,result.places[i].longitude,result.places[i].name);
-			}
+			console.log("indirizzo =",result.places[i].address,"civico =",result.places[i].civico);
+			
+			/*Grazie a Geocode si effettua una ricerca del Place in base all'indirizzo; il risultato della ricerca è un oggetto contenente la percentuale di precisione
+			*della ricerca, la latitudine e longitudine ed altre informazioni. Facciamo uso della latitudine e longitudine per indicare i posti che si trovano in una città nella mappa.*/
+			
+			L.esri.Geocoding.geocode().address(result.places[i].civico+' '+result.places[i].address).city(result.places[i].city).region(result.places[i].region).run(function (err, results, response) {
+  				if (err) {
+    				console.log(err);
+    				return;
+  				}
+  				console.log(results.results[0]);
+				addMarker(results.results[0].latlng.lat,results.results[0].latlng.lng,result.places[i].name);
+			});
+
 			i++;
 		}
+		i=0;
 	}
+	
+	async function spotPlace(civico,address,city,region){
+		L.esri.Geocoding.geocode().address(civico+' '+address).city(city).region(region).run(function (err, results, response) {
+				if (err) {
+				console.log(err);
+				return;
+				}
+				console.log(results.results);
+				console.log(address+' '+civico+' questo è il posto trovato -> '+results.results[0].properties.StAddr);
+				setCoords(results.results[0].latlng.lat,results.results[0].latlng.lng);
+			});
+	}
+	
 
 	</script>
 </html>

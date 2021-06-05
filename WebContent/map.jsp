@@ -102,6 +102,17 @@ vive fino a ricaricamento pagina). !-->
 		i=0;
 	}
 
+	async function spotPlace(){
+		L.esri.Geocoding.geocode().nation('Niger').run(function (err, results, response) {
+				if (err) {
+				console.log(err);
+				return;
+				}
+				console.log(results.results[0].latlng.lat+' '+results.results[0].latlng.lng);
+			setCoords(position.coords.latitude,position.coords.longitude);
+		});
+	}
+	
 	</script>
 	<h1>Mappa e geolocalizzazione.</h1>
 	<div id="Map"></div>

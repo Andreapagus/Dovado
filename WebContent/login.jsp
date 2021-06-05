@@ -1,47 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
-<jsp:useBean id ="logBean" scope="request" class="logic.model.LogBean" />
-<jsp:setProperty name="logBean" property="*" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-
 <body>
-<%
-	if(request.getParameter("logForm")!= null){ //controllo la richiesta ricevuta, se all'interno è presente un parametro login vuol dire che arrivo a questa pagina tramite la pressione del bottone login, quindi ne consegue che i dati username e password sono pieni e quindi posso andare avanti
-		if(logBean.validate()){ 
-			session.setAttribute("user", logBean.getUser());
-%>
-			<jsp:forward page="homeLogin.jsp"/>
-<%
-		} else{
-%>
-		<p style="color:red;"> ${logBean.getError()}</p>
-<%		
-		};
-	}
-%>
   <h1>Login Page</h1>
-    <form action="login.jsp" method="POST">    
+  <p style="color:red;">${sessionExpired}</p>
+  <form action=${pageContext.request.contextPath}/login method="POST">    
         <label><b>Email     
         </b>    
         </label>    
-        <input type="email" name="email"  placeholder="Email" required>    
+        <input type="email" name="Uemail"  placeholder="Username">    
         <br><br>    
         <label><b>Password     
         </b>    
         </label>    
-        <input type="password" name="password"  placeholder="Password" pattern=".{8,}" maxlength="20" required>    
+        <input type="Password" name="Password"  placeholder="Password">    
         <br>    
-       
-        <input type="submit" name="logForm"  value="Login">       
-      
-       
-      <%--   Implementa Dimenticata  <a href="#">Password</a>   --%>    
+        <p style="color:red;">${wrongLogin}</p>
+        <input type="submit" name="logButton"  value="Login ">       
+        <br><br>    
+        
+      <!--   Implementa Dimenticata  <a href="#">Password</a>   -->    
     </form>   
     <p>Se ancora non sei registrato clicca <a href="register.jsp"> qui </a></p>
       

@@ -45,10 +45,12 @@ public class DAOActivity {
 			
 			JSONObject result;
 			JSONObject activityToAdd = new JSONObject(),activityIdToAdd = new JSONObject();
+			JSONArray newPreferences = new JSONArray();
 
-			
+			activityToAdd.put("place", p.getId());
 			activityToAdd.put("name", activity.getName());
 			activityToAdd.put("creator", activity.getCreator().getUserID());
+			activityToAdd.put("preferences", newPreferences);
 			if(activity.getFrequency() instanceof ContinuosActivity) {
 				activityToAdd.put("opening", activity.getFrequency().getOpeningTime().toString());
 				activityToAdd.put("closing", activity.getFrequency().getClosingTime().toString());
@@ -362,7 +364,7 @@ public class DAOActivity {
 				System.out.println("Non ci sono attività da dover cercare!\n");
 				return null;
 			}
-			//commento da cancellare
+			
 			//Si inizia a scandire l'array di attività in cerca di quella che contenga almeno una preferenza che combaci con quella cercata.
 			for(i=0;i<activityArray.size();i++){
 				
