@@ -39,7 +39,9 @@
 	
 	    <nav class="navbar navbar-expand-lg navbar-dark">
 	      <div class="container-fluid">
-	        <a class="navbar-brand" href="sample.jsp">Dovado</a>
+	        <a class="navbar-brand" href="sample.jsp">
+	        	 <img src="logo/DovadoLogo(3).png" alt="" width="auto" height="50vh"> 
+	        </a>
 	        <% if (true) { //qua se non è loggato si mette a false così non compaiono i pulsanti %>
 	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 	          <span class="navbar-toggler-icon"></span>
