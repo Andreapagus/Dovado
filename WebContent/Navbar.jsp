@@ -4,7 +4,8 @@
     <!doctype html>
 	<html lang="en">
 	<head>
-	  	<%
+	  	<% //NON SI PUO' FARE QUI IL CHECK DEL LOGIN PERCHE' al codice chiamato con include non è permesso modificare status code ed header e di conseguenza non è possibile effettuare una redirezione
+	  	
 	  		String titolo = (String) application.getAttribute("titolo");
 	  		
 	  		int active = 0;
@@ -17,6 +18,9 @@
 	  			break;
 	  			
 	  			case "Schedule": active = 2;
+	  			break;
+	  			
+	  			case "HomeLogin": active = 3;
 	  			break;
 	  		};
 	  	%>
@@ -42,7 +46,14 @@
 	        <a class="navbar-brand" href="sample.jsp">
 	        	 <img src="logo/DovadoLogo(3).png" alt="" width="auto" height="50vh"> 
 	        </a>
-	        <% if (true) { //qua se non è loggato si mette a false così non compaiono i pulsanti %>
+	        <%	
+	        String path = ((HttpServletRequest) request).getRequestURI();
+	        System.out.println(path);
+	        
+	      
+	        
+	        if (true) { //qua se non è loggato si mette a false così non compaiono i pulsanti %>
+	        
 	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 	          <span class="navbar-toggler-icon"></span>
 	        </button>

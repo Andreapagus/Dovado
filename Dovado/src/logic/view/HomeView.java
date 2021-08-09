@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ResourceBundle;
 
-import org.graalvm.polyglot.*;
 import com.sun.javafx.fxml.builder.web.WebEngineBuilder;
 import com.sun.prism.paint.Color;
 

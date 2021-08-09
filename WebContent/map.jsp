@@ -5,6 +5,13 @@ login bean!. !-->
 request e session (richiesta e sessione) oppure application o page (vive fino a chiusura applicazione o 
 vive fino a ricaricamento pagina). !-->
 
+	<%	if(session.isNew()) {
+		
+		response.sendRedirect("login.jsp");
+	} else {
+		session.setMaxInactiveInterval(10);	
+	}%>
+	
 <html>
 	<head>
 		<meta charset="ISO-8859-1"></meta>
