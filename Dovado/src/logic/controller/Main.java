@@ -488,7 +488,7 @@ public class Main {
 		
 		System.out.println("Il coupon è composto da: \nuser =" + cp.getuID() + "\npartner = "+ cp.getpID() +"\ncodice = " + cp.getCouponCode() + "\nSconto = "+ cp.getDiscount());
 		
-		System.out.println("\n------------------------------------------------------test Wallet----------------------------------------------\n");
+		System.out.println("\n------------------------------------------------------test Wallet---------------------------------------------\n");
 		
 		DAOSuperUser daoSu = DAOSuperUser.getInstance();
 		User usr;
