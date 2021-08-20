@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import logic.model.Activity;
 import logic.model.Cadence;
 import logic.model.CertifiedActivity;
-import logic.model.DAOPlace;
+import logic.model.Coupon;
+import logic.model.DAOCoupon;
 import logic.model.DAOSuperUser;
 import logic.model.DateBean;
 import logic.model.Partner;
@@ -33,14 +34,14 @@ public class Main {
 		
 		//----- INIZIO TEST CREATE ACTIVITY E PLAY ACTIVITY -------------------------------------
 		
+		//scrivo per cambiare
 		
 		
 		
-		
+		/*
 		//Sessione 1: un user crea un'AttivitÃ  normale:
 		System.out.println("Creo utente e attivitÃ  normale:\n");
 		
-		/* 				User u = new User("sessione1"); 					*/
 		DAOSuperUser  dao = DAOSuperUser.getInstance();
 		CreateUserController createUser= new CreateUserController();
 		int control =  createUser.createUser("sessione1@drew.com","sessione1","sessione1");
@@ -54,19 +55,15 @@ public class Main {
 			System.out.println("USER NULL");}
 		// creo posto per esempio ma va rivisto assolutamente 
 		PlaceBean placeBean = PlaceBean.getInstance();
-		DAOPlace daoP = DAOPlace.getInstance();
+		
 		//Crea un posto senza ancora specificarne il proprietario; nella PlaceBean si salva anche su un file JSON il posto risultante in modo da mantenerlo in memoria.
 		//Inoltre sarà salvato su PlaceVector; un posto richiederà come attributi la via, il nome, la città, il numero civico, la regione ed infine il proprietario.
 		System.out.println("Creo un posto, lo salvo nel file json:\n");
 		
 		//Aggiungo un posto utilizzando il bean PlaceBean; questo a sua volta chiamerà CreatePlaceController per fornire il posto creato
 		//e salvarlo nel DB.
-		//Place p = placeBean.addPlace("Concerto di Tupac","Via nicola salvi","Roma","Lazio","65",null,u); 
-		Place p;
-		if((p = daoP.findPlaceInJSON("Casa di Andrea", "Roma", "Lazio"))==null) {
-			System.out.println("Non ho trovato un place\n");
-			return;
-		}
+		Place p = placeBean.addPlace("Concerto di Jhonny","Via budino salvi","Genova","Liguria","65",null,u); 
+		
 		//creo bean per la prma attivitÃ :
 		
 		CreateActivityBean erFaciolo = new CreateActivityBean();
@@ -81,7 +78,7 @@ public class Main {
 		
 		
 		CreateActivityController c1 = new CreateActivityController(u,erFaciolo);
-		c1.createActivity("ciao", p);
+		c1.createActivity("ciaNO", p);
 		
 		System.out.println("\n---------------------utente ha creato attivitÃ  normale continua, aperta dalle 9:30 alle 18---------------------------\n");
 		//----------------------------------------------------
@@ -177,7 +174,6 @@ public class Main {
 		// Sessione 2: un partner crea un'AttivitÃ   certificata:
 		System.out.println("Creo Partner e attivitÃ  certificata:\n");
 		
-		/*									Partner partner = new Partner("Sessione2");											*/
 		
 		control = createUser.createPartner("Sessione2@drew.com","Sessione2","Sessione2");
 		if (control != 1) {
@@ -194,7 +190,7 @@ public class Main {
 			System.out.println(" IL PARTNER HA QUESTI ATTRIBUTI: "+partner.getEmail()+" "+partner.getUsername()+" "+partner.getName()+"\n");
 		}
 		CreateActivityController c2 = new CreateActivityController(partner, erFaciolo2);
-		c2.createActivity("ciao2",p);
+		c2.createActivity("ciao7",p);
 		c2 = new CreateActivityController(partner, erFaciolo3);
 		c2.createActivity("ciao3",p);
 		c2 = new CreateActivityController(partner, erFaciolo4);
@@ -205,31 +201,37 @@ public class Main {
 		
 		System.out.println("Partner ha creato 3 attività  certificate:\n2 -periodica settimanale che si ripete ogni martedì \n3- una mensile che va dal 12 al 15\n4- una annuale che si svolge dal 12/01 al 15/01\n5 - un'attività  a scadenza valida solo il 19 feb 2021 ");
 		//----------------------------------------------------------
-		
+		*/
 		
 		/*Sessione 1: l'untente partecipa prima ad un'attivitÃ  normale
 		e poi ad una certificata, mostrando come la sua valuta in game NOn aumenta con la prima,
 		Ma lo fa con la seconda*/
 		
-		FindActivityController cf = new FindActivityController();
+		/*FindActivityController cf = new FindActivityController();
 		SuperActivity activityFound;
 		CertifiedActivity activityIsCertified;
+		Place p2 = new Place
+		
+		
+		
+		
+		
 		System.out.println("\nL'utente farà  un'attività  NON certificata:\n");
 		
 		//Tramite find activity trovo la prima attività del posto p, poi ottenuta l'attività con un metodo generico che restituisce SuperActivity
 		//Controllo che tipo di istanza sia e a seconda di questo restituisco o meno il reward.
 		
-		activityFound = cf.findActivityByID(p,8);
+		activityFound = cf.findActivityByID(p,0);
 		if(activityFound instanceof CertifiedActivity) {
 			activityIsCertified = (CertifiedActivity)activityFound;
 			activityIsCertified.PlayActivity(u);
 		}
 		
 		System.out.println("saldo dell'utente dopo attività : "+u.getBalance());
+		*/
+		/*System.out.println("\nL'utente farà  un'attività  Certificata:");
 		
-		System.out.println("\nL'utente farà  un'attività  Certificata:");
-		
-		activityFound = cf.findActivityByID(p,9);
+		activityFound = cf.findActivityByID(p,1);
 		if(activityFound instanceof CertifiedActivity) {
 			activityIsCertified = (CertifiedActivity)activityFound;
 			activityIsCertified.PlayActivity(u);
@@ -263,74 +265,76 @@ public class Main {
 		try {
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  1 fattibile tutti i giorni dalle 9:30 alle 18 sia fattibile oggi alle 19:17 ...\nId del posto: "+p.getId());
-		if(cf.findActivityByID(p,8).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,12), LocalTime.of(19, 17)))) System.out.println("Ã¨ fattibile :)\n");
+		
+		if(cf.findActivityByID(p,0).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,12), LocalTime.of(19, 17)))) System.out.println("Ã¨ fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  2 fattibile ogni Martedì dalle  9:30 alle 18 sia fattibile oggi (che è martedì) alle 10:17 ...");
-		if(cf.findActivityByID(p,9).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,12), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,1).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,12), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  2 fattibile ogni Martedì dalle  9:30 alle 18 sia fattibile domani (che è mercoledì miei dudi) alle 10:17 ...");
-		if(cf.findActivityByID(p,9).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,13), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,1).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,13), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  2 fattibile ogni Martedì dalle  9:30 alle 18 sia fattibile il 15 giugno 2021 (che è martedì) alle 10:17 ...");
-		if(cf.findActivityByID(p,9).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 6,15), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,1).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 6,15), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 	
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  3 fattibile ogni mese dal 12 al 15 dalle  9:30 alle 18 sia fattibile il 15 giugno 2021 alle 10:17 ...");
-		if(cf.findActivityByID(p,10).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 6,15), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,2).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 6,15), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  3 fattibile ogni mese dal 12 al 15 dalle  9:30 alle 18 sia fattibile il 17 giugno 2021 alle 10:17 ...");
-		if(cf.findActivityByID(p,10).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 6,17), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,2).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 6,17), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  4 fattibile ogni anno dal 12/01 al 15/01 dalle  9:30 alle 18 sia fattibile il 17 giugno 2021 alle 10:17 ...");
-		if(cf.findActivityByID(p,11).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 6,17), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,3).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 6,17), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  4 fattibile ogni anno dal 12/01 al 15/01 dalle  9:30 alle 18 sia fattibile il 13 gennaio 2022 alle 10:17 ...");
-		if(cf.findActivityByID(p,11).playableOnThisDate(LocalDateTime.of(LocalDate.of(2022, 1,13), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,3).playableOnThisDate(LocalDateTime.of(LocalDate.of(2022, 1,13), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  5 fattibile solo il 19/01/2020 dalle  9:30 alle 18 sia fattibile il 13 gennaio 2022 alle 10:17 ...");
-		if(cf.findActivityByID(p,12).playableOnThisDate(LocalDateTime.of(LocalDate.of(2022, 1,13), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,4).playableOnThisDate(LocalDateTime.of(LocalDate.of(2022, 1,13), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		
 		//----------------------------------------------------------------
 		System.out.println("controllo che attività  5 fattibile solo il 19/01/2020 dalle  9:30 alle 18 sia fattibile il 19 gennaio 2022 alle 10:17 ...");
-		if(cf.findActivityByID(p,12).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,19), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
+		if(cf.findActivityByID(p,4).playableOnThisDate(LocalDateTime.of(LocalDate.of(2021, 1,19), LocalTime.of(10, 17)))) System.out.println("è fattibile :)\n");
 		else System.out.println("non è fattibile :(\n");
 		//--------------------------------------------------------------
 		} catch (NullPointerException e) {
 			System.out.println("\nUna delle attività non è stata trovata nel file JSON\n");
 			e.printStackTrace();
-		}
-		
+		}*/	
+				
 		//----------------TEST CHANNELL----------------------
-		System.out.println("\n"+ "------------------------------TEST CHANNELL-------------------------------------------"+"\n");
+	/*	System.out.println("\n"+ "------------------------------TEST CHANNELL-------------------------------------------"+"\n");
+
 		
-		PlayActivityController cpa = new PlayActivityController((Activity)cf.findActivityByID(p,11));
-		
+		PlayActivityController cpa = new PlayActivityController((Activity)cf.findActivityByID(p,3));
+				
 		cpa.readOnChannell(0);
 		
 		cpa.writeOnChannell(1, "Io sono pane");
@@ -353,14 +357,16 @@ public class Main {
 		ClaimActivityController ca = new ClaimActivityController();
 		
 		System.out.println("\n-------------------------------------------Aggiunta Propietario a attività già esistente---------------------------------------------\n");
-		if(ca.claimActivityOwnership(partner, cf.findActivityByID(p,8)))
+		if(ca.claimActivityOwnership(partner, cf.findActivityByID(p,0)))
 			System.out.println("Operazione effettuata con successo!");
 		else System.out.println("Operazione di aggiunta proprietario dell'attività fallita!");
+		*/
+		/*
 		
 		System.out.println("\n-------------------------------------------Eliminazione di attività dalla persistenza------------------------------------------------\n");	
 		
 		ManageActivityController mac = new ManageActivityController();
-		SuperActivity sua = cf.findActivityByID(p, 12),modifiedsua;
+		SuperActivity sua = cf.findActivityByID(p, 4),modifiedsua;
 		System.out.println("Nome attività precedente alla modifica: "+sua.getName()+" L'id "+sua.getId()+" anche il creatore per vedere una cosa: "+sua.getCreator().getUserID());
 		modifiedsua = mac.setActivityName(sua,"NomeDeProva");
 		System.out.println("Nome attività a seguito della modifica: "+modifiedsua.getName());
@@ -388,13 +394,13 @@ public class Main {
 		c2 = new CreateActivityController(partner, erFaciolo6);
 		c2.createActivity("anvedime",p);
 		
-		System.out.println(cf.findActivityByID(p, 14)!=null);	
+		System.out.println(cf.findActivityByID(p, 6)!=null);	
 		
-		
+		*/
 		/*if(mac.deleteActivity(cf.findActivityByID(p, 6)))
 			System.out.println("Eliminazione effettuata con successo.");	
 		else System.out.println("Eliminazione NON AVVENUTA.");	
-		*/
+		*//*
 		System.out.println("\n-------------------------------------------Cambiamento frequenza di attività nella persistenza e fuori--------------------------------\n");	
 		
 		//PER TESTARE UN METODO DI INTERESSE BASTA COMMENTARE GLI ALTRI DUE.
@@ -435,17 +441,17 @@ public class Main {
 			System.out.println("Cambiamento nell'attività "+modifiedsua.getName()+" avvenuto con SUCCESSO");	
 		else System.out.println(modifiedsua.getName()+" non è stata modificata.");	
 		
-		modifiedsua = cf.findActivityByID(p, 9);
+		modifiedsua = cf.findActivityByID(p, 1);
 		if(spc.updatePreferencesActivity(modifiedsua, "CALCio") && spc.updatePreferencesActivity(modifiedsua, "tennIS"))
 			System.out.println("Cambiamento nell'attività "+modifiedsua.getName()+" avvenuto con SUCCESSO");	
 		else System.out.println(modifiedsua.getName()+" non è stata modificata.");	
 		
-		modifiedsua = cf.findActivityByID(p, 11);
+		modifiedsua = cf.findActivityByID(p, 3);
 		if(spc.updatePreferencesActivity(modifiedsua, "Boxe") && spc.updatePreferencesActivity(modifiedsua, "tennIS"))
 			System.out.println("Cambiamento nell'attività "+modifiedsua.getName()+" avvenuto con SUCCESSO");	
 		else System.out.println(modifiedsua.getName()+" non è stata modificata.");	
 		
-		modifiedsua = cf.findActivityByID(p, 13);
+		modifiedsua = cf.findActivityByID(p, 5);
 		if(spc.updatePreferencesActivity(modifiedsua, "Boxe") && spc.updatePreferencesActivity(modifiedsua, "calcio"))
 			System.out.println("Cambiamento nell'attività "+modifiedsua.getName()+" avvenuto con SUCCESSO");	
 		else System.out.println(modifiedsua.getName()+" non è stata modificata.");
@@ -464,10 +470,37 @@ public class Main {
 			for(j=0;j<result.getPreferences().size();j++) {
 				System.out.println("\n"+result.getPreferences().get(j));
 			}
-		}
+		}*/
 		
-			
-			
-	}
+		    //    TEST DAOCOUPON
+		System.out.println("\n------------------------------------------------------test coupon----------------------------------------------\n");
 
+		DAOCoupon daoC = DAOCoupon.getInstance();
+		
+		Coupon test = new Coupon(22,34, true,5);
+		
+		int code = test.getCouponCode();
+		System.out.println(code);
+		
+		daoC.addCoupontoJSON(test);	
+		
+		Coupon cp = daoC.findCoupon(code);
+		
+		System.out.println("Il coupon è composto da: \nuser =" + cp.getuID() + "\npartner = "+ cp.getpID() +"\ncodice = " + cp.getCouponCode() + "\nSconto = "+ cp.getDiscount());
+		
+		System.out.println("\n------------------------------------------------------test Wallet----------------------------------------------\n");
+		
+		DAOSuperUser daoSu = DAOSuperUser.getInstance();
+		User usr;
+		
+		daoSu.updateUserWallet((long) 1, (long) 100);
+		
+		usr = (User) daoSu.findSuperUserByID((long) 1);
+		
+		System.out.println("Il wallet attuale è: \n"+ usr.getBalance());
+
+		
+		
+	}
+		
 }

@@ -38,9 +38,9 @@ public class User extends SuperUser{
 	private int wallet;
 	private String name;
 	
-	public User(String username, String email, Long id) {
+	public User(String username, String email, Long id, Long wallet) {
 		super(username,email, id);
-		this.wallet = 0;
+		this.wallet = wallet.intValue();
 		this.schedule = new Schedule();
 	}
 	

@@ -43,6 +43,9 @@ public class DAOSuperUser {
 				newUser.put("email", email);
 				newUser.put("username", username);
 				newUser.put("partner", partner);
+				if (partner == 0) {
+					newUser.put("wallet", 0);
+				}
 				newUser.put("password", password);
 				newUser.put("preferences", userPref);
 				userArray.add(newUser);
@@ -137,6 +140,67 @@ public class DAOSuperUser {
 		return false;
 	}
 	
+	//metodo creato per l'aggiornamento del portafoglio dell'utente partendo dall'ID
+	public boolean updateUserWallet(Long id, Long wallet) {
+		JSONParser parser = new JSONParser();
+		Long daoWallet  =  (long) 0;
+		int i,j;
+		
+		try {
+			Object users = parser.parse(new FileReader("WebContent/user.json"));
+			JSONObject userRes = (JSONObject) users;
+			JSONArray userArray = (JSONArray) userRes.get("users");
+			JSONObject result;
+			
+			
+			//Fatto ciò vado a cercare all'interno del JSON l'utente il cui id voglio aggiornare il wallet
+			for(i=0;i<userArray.size();i++) {
+				result = (JSONObject)userArray.get(i);
+				
+				Long IDJSON = (Long) result.get("id");
+				//Se trovato l'utente si pone all'interno dell'attributo "preferences"
+				//il nuovo JSONArray appositamente preparato in precedenza.
+				if (id.equals(IDJSON)) {
+					daoWallet = (Long) result.get("wallet");
+					if (daoWallet == null) {
+						daoWallet =(long) 0;
+					}
+					daoWallet = daoWallet + wallet;
+					
+					if (daoWallet <= 0) {
+						return false;
+					}
+					
+						result.put("wallet", daoWallet);
+						
+						FileWriter file = new FileWriter("WebContent/user.json");
+						file.write(userRes.toString());;
+						file.flush();
+						file.close();
+						
+						return true;
+					
+				}
+			}			
+		} catch(NullPointerException e) {
+			e.printStackTrace();
+			return false;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return false;
+	}
+	
 	//Creiamo una istanza di una classe a partire dall'id
 	public SuperUser findSuperUserByID(Long id ){
 		JSONParser parser = new JSONParser();
@@ -161,7 +225,8 @@ public class DAOSuperUser {
 							partner.setPreferences(((ArrayList<String>)result.get("preferences")));
 							return partner;
 						}
-						User user = new User((String) result.get("username"),(String) result.get("email"),(Long) result.get("id"));
+						System.out.println(result.get("wallet"));
+						User user = new User((String) result.get("username"),(String) result.get("email"),(Long) result.get("id"),(Long) result.get("wallet"));
 						user.setPreferences(((ArrayList<String>)result.get("preferences")));
 						return user;
 					}
@@ -221,7 +286,7 @@ public class DAOSuperUser {
 							partner.setPreferences(((ArrayList<String>)result.get("preferences")));
 							return partner;
 						}
-						User user = new User((String) result.get("username"),(String) result.get("email"),(Long) result.get("id"));
+						User user = new User((String) result.get("username"),(String) result.get("email"),(Long) result.get("id"), (Long) result.get("wallet"));
 						user.setPreferences(((ArrayList<String>)result.get("preferences")));
 						return user;					
 					}
@@ -277,7 +342,7 @@ public class DAOSuperUser {
 							partner.setPreferences(((ArrayList<String>)result.get("preferences")));
 							return partner;
 						}
-						User user = new User((String) result.get("username"),(String) result.get("email"),(Long) result.get("id"));
+						User user = new User((String) result.get("username"),(String) result.get("email"),(Long) result.get("id"), (Long) result.get("wallet"));
 						user.setPreferences(((ArrayList<String>)result.get("preferences")));
 						return user;
 					}
