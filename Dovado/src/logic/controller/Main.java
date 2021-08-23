@@ -499,7 +499,7 @@ public class Main {
 		
 		System.out.println("Il wallet attuale è: \n"+ usr.getBalance());
 
-		
+	// ho davvero risolto?
 		
 	}
 		
