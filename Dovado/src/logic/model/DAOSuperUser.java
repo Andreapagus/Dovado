@@ -201,7 +201,8 @@ public class DAOSuperUser {
 		return false;
 	}
 	
-	//Creiamo una istanza di una classe a partire dall'id
+	//Creiamo una istanza di una classe SuperUser a partire dall'id trovandone gli attributi nella 
+	//persistenza
 	public SuperUser findSuperUserByID(Long id ){
 		JSONParser parser = new JSONParser();
 		int i;

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.web.WebView?>
 
-<VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.view.HomeView">
+<VBox id="root" fx:id="root" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.view.HomeView">
    <children>
       <BorderPane VBox.vgrow="ALWAYS">
          <center>
@@ -19,9 +19,14 @@
             <HBox prefHeight="32.0" prefWidth="767.0" style="-fx-background-color: #212121;" BorderPane.alignment="CENTER" />
          </top>
          <left>
-            <VBox style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
+            <VBox style="-fx-background-color: #212121;" BorderPane.alignment="CENTER">
                <children>
-                  <TextField id="searchBar" fx:id="searchBar" />
+                  <HBox>
+                     <children>
+                        <TextField id="searchBar" fx:id="searchBar" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="searchButton" mnemonicParsing="false" onAction="#filterActivities" text="Button" />
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER">
                      <children>
                         <Button fx:id="preference1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Preference1">

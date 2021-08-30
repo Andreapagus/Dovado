@@ -45,7 +45,8 @@ function setCoords(latitude,longitude){
   long=longitude;
   mymap.setView([lat,long],zoom+10);
   var marker = L.marker([lat,long]).addTo(mymap);
-  marker.bindPopup("<b>Ti trovi qui</b>").openPopup();
+  //La linea sottostante aggiunge un popup con un messaggio, ma si può anche evitare.
+  //marker.bindPopup("<b>Ti trovi qui</b>").openPopup();
 }
 
 function addMarker(latitude,longitude,placeName){
